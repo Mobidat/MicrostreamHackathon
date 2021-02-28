@@ -5,16 +5,15 @@ import one.microstream.storage.configuration.Configuration;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class MicroStream.
  */
 public final class DB
 {
-
+	
 	/** The Constant root. */
 	private final static DataRoot root = new DataRoot();
-
+	
 	/** The Constant storageManager. */
 	private final static EmbeddedStorageManager storageManager;
 	static
@@ -25,7 +24,7 @@ public final class DB
 			.createEmbeddedStorageManager(DB.root)
 			.start();
 	}
-
+	
 	/**
 	 * Root.
 	 *
@@ -35,7 +34,7 @@ public final class DB
 	{
 		return DB.root;
 	}
-
+	
 	/**
 	 * Storage manager.
 	 *
@@ -45,7 +44,7 @@ public final class DB
 	{
 		return DB.storageManager;
 	}
-
+	
 	/**
 	 * Shut down.
 	 */
@@ -53,7 +52,7 @@ public final class DB
 	{
 		DB.storageManager.shutdown();
 	}
-
+	
 	/**
 	 * Instantiates a new micro stream.
 	 */

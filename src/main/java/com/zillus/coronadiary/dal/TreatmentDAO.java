@@ -15,7 +15,7 @@ import com.zillus.coronadiary.microstream.DB;
 
 public class TreatmentDAO
 {
-
+	
 	/**
 	 * Adds the entity.
 	 *
@@ -24,8 +24,11 @@ public class TreatmentDAO
 	 */
 	public static void addEntity(final AbstractTreatmentEntity entity)
 	{
-		DB.root().getTreatmentEntities().add(entity);
-		TreatmentDAO.storeTreatment();
+		if(entity != null)
+		{
+			TreatmentDAO.findAll().add(entity);
+			TreatmentDAO.storeTreatment();
+		}
 	}
 	
 	/**
@@ -36,10 +39,13 @@ public class TreatmentDAO
 	 */
 	public static void removeEntity(final AbstractTreatmentEntity entity)
 	{
-		DB.root().getTreatmentEntities().remove(entity);
-		TreatmentDAO.storeTreatment();
+		if(entity != null || !DB.root().getTreatmentEntities().contains(entity))
+		{
+			TreatmentDAO.findAll().remove(entity);
+			TreatmentDAO.storeTreatment();
+		}
 	}
-
+	
 	/**
 	 * Find all.
 	 *
@@ -51,54 +57,73 @@ public class TreatmentDAO
 	}
 
 	/**
+	 * Checks if is treatment DB.
+	 *
+	 * @return true, if is treatment DB
+	 */
+	public static boolean isTreatmentDB()
+	{
+		return DB.root().isTreatments();
+	}
+	
+	/**
 	 * Find all medical.
 	 *
 	 * @return the sets the
 	 */
-	public static Set<AbstractTreatmentEntity> filterAllMedication()
+	public static List<AbstractTreatmentEntity> filterAllMedication()
 	{
 		return TreatmentDAO.findAll().stream().filter(MedicationEntity.class::isInstance)
-			.collect(Collectors.toSet());
+			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Find all symptom.
 	 *
 	 * @return the sets the
 	 */
-	public static Set<AbstractTreatmentEntity> filterAllSymptom()
+	public static List<AbstractTreatmentEntity> findAllSymptom()
 	{
-		return TreatmentDAO.findAll().stream().filter(SymptomEntity.class::isInstance)
-			.collect(Collectors.toSet());
+		return TreatmentDAO.findAll().stream()
+			.filter(SymptomEntity.class::isInstance)
+			.sorted()
+			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Find all testing.
 	 *
 	 * @return the sets the
 	 */
-	public static Set<AbstractTreatmentEntity> filterAllTesting()
+	public static List<AbstractTreatmentEntity> findAllTesting()
 	{
-		return TreatmentDAO.findAll().stream().filter(TestingEntity.class::isInstance)
-			.collect(Collectors.toSet());
+		return TreatmentDAO.findAll().stream()
+			.filter(TestingEntity.class::isInstance)
+			.sorted()
+			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Find all vaccination.
 	 *
 	 * @return the sets the
 	 */
-	public static Set<AbstractTreatmentEntity> filterAllVaccination()
+	public static List<AbstractTreatmentEntity> findAllVaccination()
 	{
-		return TreatmentDAO.findAll().stream().filter(VaccinationEntity.class::isInstance)
-			.collect(Collectors.toSet());
+		return TreatmentDAO.findAll().stream()
+			.filter(VaccinationEntity.class::isInstance)
+			.sorted()
+			.collect(Collectors.toList());
 	}
-
+	
+	/**
+	 * Store treatment.
+	 */
 	private static void storeTreatment()
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities());
 	}
-
+	
 	/**
 	 * Gets the sorted treatment.
 	 *
@@ -106,7 +131,7 @@ public class TreatmentDAO
 	 *            the patient id
 	 * @return the sorted treatment
 	 */
-	public static List<AbstractTreatmentEntity> getSortedTreatments(final String patientId)
+	public static List<AbstractTreatmentEntity> getPatientTreatments(final String patientId)
 	{
 		return TreatmentDAO.findAll().stream()
 			.filter(t -> t.getPatientId() == patientId)
@@ -119,7 +144,7 @@ public class TreatmentDAO
 	 *
 	 * @return the sorted treatments
 	 */
-	public static List<AbstractTreatmentEntity> getSortedTreatments()
+	public static List<AbstractTreatmentEntity> getAllTreatments()
 	{
 		return TreatmentDAO.findAll().stream()
 			.sorted()

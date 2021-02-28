@@ -51,4 +51,24 @@ public class DataRoot
 		return this.treatmentEntities;
 	}
 	
+	/**
+	 * Checks if is persons.
+	 *
+	 * @return true, if is persons
+	 */
+	public boolean isPersons()
+	{
+		return !this.personEntities.isEmpty();
+	}
+	
+	/**
+	 * Checks if is treatments.
+	 *
+	 * @return true, if is treatments
+	 */
+	public boolean isTreatments()
+	{
+		return !this.treatmentEntities.isEmpty();
+	}
+	
 }

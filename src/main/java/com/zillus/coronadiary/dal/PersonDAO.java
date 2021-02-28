@@ -1,7 +1,6 @@
 
 package com.zillus.coronadiary.dal;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -17,31 +16,7 @@ import com.zillus.coronadiary.microstream.DB;
  */
 public class PersonDAO
 {
-	
-	/**
-	 * Adds the entity.
-	 *
-	 * @param entity
-	 *            the entity
-	 */
-	public static void addEntity(final AbstractPersonEntity entity)
-	{
-		DB.root().getPersonEntities().add(entity);
-		PersonDAO.storePerson();
-	}
-	
-	/**
-	 * Removes the entity.
-	 *
-	 * @param entity
-	 *            the entity
-	 */
-	public static void removeEntity(final AbstractPersonEntity entity)
-	{
-		DB.root().getPersonEntities().remove(entity);
-		PersonDAO.storePerson();
-	}
-	
+
 	/**
 	 * Find all.
 	 *
@@ -51,7 +26,47 @@ public class PersonDAO
 	{
 		return DB.root().getPersonEntities();
 	}
-	
+
+	/**
+	 * Checks if is person DB.
+	 *
+	 * @return true, if is person DB
+	 */
+	public static boolean isPersonDB()
+	{
+		return DB.root().isPersons();
+	}
+
+	/**
+	 * Adds the entity.
+	 *
+	 * @param entity
+	 *            the entity
+	 */
+	public static void addEntity(final AbstractPersonEntity entity)
+	{
+		if(entity != null)
+		{
+			PersonDAO.findAll().add(entity);
+			PersonDAO.storePerson();
+		}
+	}
+
+	/**
+	 * Removes the entity.
+	 *
+	 * @param entity
+	 *            the entity
+	 */
+	public static void removeEntity(final AbstractPersonEntity entity)
+	{
+		if(entity != null || !DB.root().getPersonEntities().contains(entity))
+		{
+			PersonDAO.findAll().remove(entity);
+			PersonDAO.storePerson();
+		}
+	}
+
 	/**
 	 * Find person.
 	 *
@@ -63,45 +78,35 @@ public class PersonDAO
 	{
 		return PersonDAO.findAll().stream().filter(p -> p.getViewId() == personId).findFirst().get();
 	}
-	
+
 	/**
-	 * Filter all medical.
+	 * Find all medicals.
 	 *
-	 * @return the sets the
+	 * @return the list
 	 */
-	public static Set<MedicalEntity> filterAllMedicals()
+	public static List<MedicalEntity> findAllMedicals()
 	{
-		return PersonDAO.findAll().stream().filter(MedicalEntity.class::isInstance)
+		return PersonDAO.findAll().stream()
+			.filter(MedicalEntity.class::isInstance)
 			.map(MedicalEntity.class::cast)
-			.collect(Collectors.toSet());
+			.sorted()
+			.collect(Collectors.toList());
 	}
-	
+
 	/**
-	 * Filter all patients.
+	 * Find all patients.
 	 *
-	 * @return the sets the
+	 * @return the list
 	 */
-	public static Set<PatientEntity> filterAllPatients()
-	{
-		return PersonDAO.findAll().stream().filter(PatientEntity.class::isInstance)
-			.map(PatientEntity.class::cast)
-			.collect(Collectors.toCollection(HashSet::new));
-	}
-	
-	/**
-	 * Gets the sorted patients.
-	 *
-	 * @return the sorted patients
-	 */
-	public Set<PatientEntity> getSortedPatients()
+	public static List<PatientEntity> findAllPatients()
 	{
 		return PersonDAO.findAll().stream()
 			.filter(PatientEntity.class::isInstance)
 			.map(PatientEntity.class::cast)
 			.sorted()
-			.collect(Collectors.toSet());
+			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Store person.
 	 */
@@ -110,17 +115,4 @@ public class PersonDAO
 		DB.storageManager().store(DB.root().getPersonEntities());
 	}
 	
-	/**
-	 * Gets the sorted medicals.
-	 *
-	 * @return the sorted medicals
-	 */
-	public List<MedicalEntity> getSortedMedicals()
-	{
-		return PersonDAO.findAll().stream()
-			.filter(MedicalEntity.class::isInstance)
-			.map(MedicalEntity.class::cast)
-			.sorted()
-			.collect(Collectors.toList());
-	}
 }

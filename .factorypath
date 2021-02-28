@@ -127,9 +127,10 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/storage.embedded/04.01.00-MS-GA/storage.embedded-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/storage/04.01.00-MS-GA/storage-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/storage.embedded.configuration/04.01.00-MS-GA/storage.embedded.configuration-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/persistence.binary.jdk8/04.01.00-MS-GA/persistence.binary.jdk8-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/persistence.binary/04.01.00-MS-GA/persistence.binary-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/persistence/04.01.00-MS-GA/persistence-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/base/04.01.00-MS-GA/base-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="VARJAR" id="M2_REPO/one/microstream/storage.embedded.configuration/04.01.00-MS-GA/storage.embedded.configuration-04.01.00-MS-GA.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="false" runInBatchMode="false"/>
 </factorypath>
