@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<?xdevuiml version="1.0"?>
+<?template BROWSER_XGA?>
+<?import com.vaadin.flow.component.button.Button?>
+<?import com.vaadin.flow.component.combobox.ComboBox?>
+<?import com.vaadin.flow.component.dialog.Dialog?>
+<?import com.vaadin.flow.component.formlayout.FormLayout?>
+<?import com.vaadin.flow.component.formlayout.FormLayout.FormItem?>
+<?import com.vaadin.flow.component.html.Label?>
+<?import com.vaadin.flow.component.orderedlayout.HorizontalLayout?>
+<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<?import com.vaadin.flow.component.textfield.NumberField?>
+<?import com.vaadin.flow.component.textfield.TextField?>
+<?import com.vaadin.flow.data.binder.Binder?>
+<?import com.zillus.coronadiary.domain.MedicalEntity?>
+<?import com.zillus.coronadiary.domain.enums.Professionession?>
+<?import java.lang.String?>
+<Dialog xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="MedicalPopup">
+    <x:constraints zpos="0" width="90%" height="80%" />
+    <VerticalLayout x:name="verticalLayout" padding="false">
+        <x:constraints zpos="0" width="-1px" height="-1px" />
+        <HorizontalLayout spacing="false" x:name="horizontalLayoutBtnBar">
+            <x:constraints width="100%" height="0px" flex-grow="0.0" />
+            <Button x:themeVariants="LUMO_SUCCESS" x:name="btnSave" text="Save">
+                <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#SAVE" />
+                <x:constraints width="100%" height="0px" flex-grow="0.0" />
+                <x:event>click.onComponentEvent</x:event>
+            </Button>
+            <Button x:themeVariants="LUMO_ERROR" x:name="btnCancel" text="Cancel">
+                <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#CANCEL" />
+                <x:constraints width="100%" height="0px" flex-grow="0.0" />
+                <x:event>click.onComponentEvent</x:event>
+            </Button>
+        </HorizontalLayout>
+        <FormLayout x:name="form">
+            <x:responsiveSteps>
+                <entry minWidth="0px" columns="1" labelsPosition="TOP" />
+            </x:responsiveSteps>
+            <x:constraints width="0px" height="0px" flex-grow="0.0" />
+            <FormItem x:name="formItem">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblName" text="name">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <TextField x:name="txtName">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                </TextField>
+            </FormItem>
+            <FormItem x:name="formItem2">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblAdress1" text="Adress">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <TextField x:name="txtAdress1">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                </TextField>
+            </FormItem>
+            <FormItem x:name="formItem3">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblAdress2" text="Adress 2">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <TextField x:name="txtAdress2">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                </TextField>
+            </FormItem>
+            <FormItem x:name="formItem4">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblCity" text="City">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <TextField x:name="txtCity">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                </TextField>
+            </FormItem>
+            <FormItem x:name="formItem5">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblZipCode" text="Zip Code">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <NumberField x:name="nrZipCode">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="int" />
+                    </x:typeArguments>
+                </NumberField>
+            </FormItem>
+            <FormItem x:name="formItem6">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblCountry" text="Country">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <TextField x:name="txtCountry">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                </TextField>
+            </FormItem>
+            <FormItem x:name="formItem7">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblProfession" text="profession">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <ComboBox x:name="cmbProfession">
+                    <x:typeArguments>
+                        <typeArgument type="Profession" />
+                    </x:typeArguments>
+                    <x:constraints width="100%" height="0px" />
+                    <x:itemLabel type="Property" data="caption" />
+                </ComboBox>
+            </FormItem>
+            <Binder x:name="binder">
+                <x:typeArguments>
+                    <typeArgument type="MedicalEntity" />
+                </x:typeArguments>
+                <x:bindings>
+                    <binding field="txtName" property="name" required="true" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="txtAdress1" property="adress1" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="txtAdress2" property="adress2" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="txtCity" property="city" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="nrZipCode" property="zipCode" required="false" readOnly="false">
+                        <validator type="Bean" />
+                        <converter TYPE="DoubleToInteger" />
+                    </binding>
+                    <binding field="txtCountry" property="country" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="cmbProfession" property="profession" required="false" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                </x:bindings>
+            </Binder>
+        </FormLayout>
+    </VerticalLayout>
+</Dialog>

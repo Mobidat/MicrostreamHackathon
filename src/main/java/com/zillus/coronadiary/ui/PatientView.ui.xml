@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<?xdevuiml version="1.0"?>
+<?template NONE?>
+<?import com.vaadin.flow.component.button.Button?>
+<?import com.vaadin.flow.component.grid.Grid?>
+<?import com.vaadin.flow.component.orderedlayout.HorizontalLayout?>
+<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<?import com.zillus.coronadiary.domain.PatientEntity?>
+<?import com.zillus.coronadiary.ui.MainLayout?>
+<VerticalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" x:routeLayout="MainLayout" x:name="PatientView" x:route="patient">
+    <x:constraints zpos="0" width="100%" height="-1px" />
+    <HorizontalLayout x:name="horizontalLayout">
+        <x:constraints width="100%" height="0px" flex-grow="0.0" />
+        <Button x:themeVariants="LUMO_SUCCESS" x:name="addBtn" text="Patient">
+            <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#ADD" />
+            <x:constraints width="0px" height="0px" flex-grow="0.0" />
+            <x:event>click.onComponentEvent</x:event>
+        </Button>
+        <Button x:themeVariants="LUMO_ERROR" x:name="cancelBtn" text="Cancel">
+            <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#CANCEL" />
+            <x:constraints width="0px" height="0px" flex-grow="0.0" />
+        </Button>
+    </HorizontalLayout>
+    <Grid x:name="gridPatient">
+        <x:typeArguments>
+            <typeArgument type="PatientEntity" />
+        </x:typeArguments>
+        <x:constraints width="100%" height="-1px" flex-grow="1.0" />
+        <x:columns>
+            <column property="name" sortable="true" />
+            <column property="birthday" sortable="true" />
+            <column property="adress1" sortable="true" />
+            <column property="adress2" sortable="true" />
+            <column property="city" sortable="true" />
+            <column property="zipCode" sortable="true" />
+            <column property="gender" sortable="true" />
+        </x:columns>
+    </Grid>
+</VerticalLayout>

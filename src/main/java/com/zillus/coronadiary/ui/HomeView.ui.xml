@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<?xdevuiml version="1.0"?>
+<?template NONE?>
+<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<?import com.zillus.coronadiary.ui.MainLayout?>
+<VerticalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" x:routeLayout="MainLayout" x:name="HomeView" x:route="">
+    <x:constraints width="-1px" zpos="0" height="-1px" />
+</VerticalLayout>

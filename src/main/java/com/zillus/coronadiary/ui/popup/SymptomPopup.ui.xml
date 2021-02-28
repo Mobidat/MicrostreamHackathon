@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<?xdevuiml version="1.0"?>
+<?template BROWSER_XGA?>
+<?import com.vaadin.flow.component.button.Button?>
+<?import com.vaadin.flow.component.combobox.ComboBox?>
+<?import com.vaadin.flow.component.datepicker.DatePicker?>
+<?import com.vaadin.flow.component.dialog.Dialog?>
+<?import com.vaadin.flow.component.formlayout.FormLayout?>
+<?import com.vaadin.flow.component.formlayout.FormLayout.FormItem?>
+<?import com.vaadin.flow.component.html.Label?>
+<?import com.vaadin.flow.component.orderedlayout.HorizontalLayout?>
+<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
+<?import com.vaadin.flow.component.textfield.NumberField?>
+<?import com.vaadin.flow.component.textfield.TextField?>
+<?import com.vaadin.flow.data.binder.Binder?>
+<?import com.zillus.coronadiary.domain.SymptomEntity?>
+<?import java.lang.String?>
+<?import java.time.LocalDate?>
+<Dialog xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="SymptomPopup">
+    <x:constraints zpos="0" width="90%" height="80%" />
+    <VerticalLayout x:name="verticalLayout" padding="false">
+        <x:constraints zpos="0" width="-1px" height="-1px" />
+        <HorizontalLayout spacing="false" x:name="horizontalLayoutBtnBar">
+            <x:constraints width="100%" height="0px" flex-grow="0.0" />
+            <Button x:themeVariants="LUMO_SUCCESS" x:name="btnSave" text="Save">
+                <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#SAVE" />
+                <x:constraints width="100%" height="0px" flex-grow="0.0" />
+                <x:event>click.onComponentEvent</x:event>
+            </Button>
+            <Button x:themeVariants="LUMO_ERROR" x:name="btnCancel" text="Cancel">
+                <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#CANCEL" />
+                <x:constraints width="100%" height="0px" flex-grow="0.0" />
+                <x:event>click.onComponentEvent</x:event>
+            </Button>
+        </HorizontalLayout>
+        <FormLayout x:name="form">
+            <x:responsiveSteps>
+                <entry minWidth="0px" columns="1" labelsPosition="TOP" />
+            </x:responsiveSteps>
+            <x:constraints width="0px" height="0px" flex-grow="0.0" />
+            <FormItem x:name="formItem">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblDate" text="Date">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <DatePicker x:name="dateDate">
+                    <x:typeArguments>
+                        <typeArgument type="LocalDate" />
+                    </x:typeArguments>
+                    <x:constraints width="100%" height="0px" />
+                </DatePicker>
+            </FormItem>
+            <FormItem x:name="formItem2">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblName" text="Symptom">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <TextField x:name="txtName">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                </TextField>
+            </FormItem>
+            <FormItem x:name="formItem3">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblType" text="Symptom Type">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <ComboBox x:name="cmbSymptom">
+                    <x:typeArguments>
+                        <typeArgument type="String" />
+                    </x:typeArguments>
+                    <x:constraints width="100%" height="0px" />
+                </ComboBox>
+            </FormItem>
+            <FormItem x:name="formItem4">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblDaysDuration" text="Days of Duration">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <NumberField x:name="nrDaysDuration">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="int" />
+                    </x:typeArguments>
+                </NumberField>
+            </FormItem>
+            <FormItem x:name="formItem5">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblIntensity" text="Symptom Intensity">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <NumberField x:name="nrIntensity">
+                    <x:constraints width="100%" height="0px" />
+                    <x:typeArguments>
+                        <typeArgument type="int" />
+                    </x:typeArguments>
+                </NumberField>
+            </FormItem>
+            <Binder x:name="binder">
+                <x:typeArguments>
+                    <typeArgument type="SymptomEntity" />
+                </x:typeArguments>
+                <x:bindings>
+                    <binding field="dateDate" property="date" required="false" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="txtName" property="name" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="cmbSymptom" property="type" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="nrDaysDuration" property="daysDuration" required="false" readOnly="false">
+                        <validator type="Bean" />
+                        <converter TYPE="DoubleToInteger" />
+                    </binding>
+                    <binding field="nrIntensity" property="intensity" required="false" readOnly="false">
+                        <validator type="Bean" />
+                        <converter TYPE="DoubleToInteger" />
+                    </binding>
+                </x:bindings>
+            </Binder>
+        </FormLayout>
+    </VerticalLayout>
+</Dialog>
