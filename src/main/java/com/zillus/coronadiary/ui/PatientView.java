@@ -28,11 +28,8 @@ public class PatientView extends VerticalLayout implements HasTitle
 	{
 		super();
 		this.initUI();
-
-		if(PersonDAO.isPersonDB())
-		{
-			this.refresh();
-		}
+		this.refresh();
+		
 	}
 	
 	@Override

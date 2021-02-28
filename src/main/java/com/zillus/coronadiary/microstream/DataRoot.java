@@ -16,13 +16,13 @@ import com.zillus.coronadiary.domain.AbstractTreatmentEntity;
  */
 public class DataRoot
 {
-
-	/** The person entities. */
-	private final Set<AbstractPersonEntity> personEntities = new HashSet<>(500);
-
-	/** The Treatment entities. */
-	private final Set<AbstractTreatmentEntity> treatmentEntities = new HashSet<>(1000);
 	
+	/** The person entities. */
+	private final Set<AbstractPersonEntity> personEntities = new HashSet<>();
+	
+	/** The Treatment entities. */
+	private final Set<AbstractTreatmentEntity> treatmentEntities = new HashSet<>();
+
 	/**
 	 * Instantiates a new data root.
 	 */
@@ -30,7 +30,7 @@ public class DataRoot
 	{
 		super();
 	}
-	
+
 	/**
 	 * Gets the person entities.
 	 *
@@ -40,7 +40,7 @@ public class DataRoot
 	{
 		return this.personEntities;
 	}
-	
+
 	/**
 	 * Gets the treatment entities.
 	 *
@@ -50,7 +50,7 @@ public class DataRoot
 	{
 		return this.treatmentEntities;
 	}
-	
+
 	/**
 	 * Checks if is persons.
 	 *
@@ -60,7 +60,7 @@ public class DataRoot
 	{
 		return !this.personEntities.isEmpty();
 	}
-	
+
 	/**
 	 * Checks if is treatments.
 	 *
@@ -70,5 +70,5 @@ public class DataRoot
 	{
 		return !this.treatmentEntities.isEmpty();
 	}
-	
+
 }

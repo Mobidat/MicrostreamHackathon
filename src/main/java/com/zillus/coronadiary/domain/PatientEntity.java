@@ -11,49 +11,28 @@ import com.zillus.coronadiary.domain.enums.Gender;
  */
 public class PatientEntity extends AbstractPersonEntity
 {
-
+	
 	/** The birthday. */
 	private LocalDate birthday;
-
+	
 	/** The gender. */
 	private Gender gender;
-
-	/**
-	 * Instantiates a new patient entity.
-	 *
-	 * @param name
-	 *            the name
-	 * @param adress1
-	 *            the adress 1
-	 * @param adress2
-	 *            the adress 2
-	 * @param city
-	 *            the city
-	 * @param zipCode
-	 *            the zip code
-	 * @param country
-	 *            the country
-	 * @param birthday
-	 *            the birthday
-	 * @param gender
-	 *            the gender
-	 */
+	
 	public PatientEntity(
 		final String name,
 		final String adress1,
 		final String adress2,
 		final String city,
-		final int zipCode,
+		final Integer zipCode,
 		final String country,
 		final LocalDate birthday,
 		final Gender gender)
 	{
 		super(name, adress1, adress2, city, zipCode, country);
-
 		this.birthday = birthday;
 		this.gender   = gender;
 	}
-
+	
 	/**
 	 * Instantiates a new patient entity.
 	 */
@@ -61,7 +40,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		super();
 	}
-
+	
 	/**
 	 * Gets the birthday.
 	 *
@@ -71,7 +50,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		return this.birthday;
 	}
-
+	
 	/**
 	 * Sets the birthday.
 	 *
@@ -82,7 +61,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		this.birthday = birthday;
 	}
-
+	
 	/**
 	 * Gets the gender.
 	 *
@@ -92,7 +71,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		return this.gender;
 	}
-
+	
 	/**
 	 * Sets the gender.
 	 *
@@ -103,7 +82,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		this.gender = gender;
 	}
-
+	
 	/**
 	 * To string.
 	 *
@@ -114,5 +93,5 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		return "PatientEntity [birthday=" + this.birthday + ", gender=" + this.gender + "]";
 	}
-
+	
 }

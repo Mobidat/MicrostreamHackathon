@@ -3,32 +3,49 @@ package com.zillus.coronadiary.domain;
 
 import java.time.LocalDate;
 
+import com.zillus.coronadiary.domain.enums.Vaccine;
 
+
+// TODO: Auto-generated Javadoc
 /**
  * The Class VaccinationEntity.
  */
 public class VaccinationEntity extends AbstractTreatmentEntity
 {
-	
+
 	/** The booster. */
-	private boolean booster;
+	private Boolean booster;
+	
+	/** The vaccine. */
+	private Vaccine vaccine;
 	
 	/**
 	 * Instantiates a new vaccination entity.
 	 *
+	 * @param patientId
+	 *            the patient id
+	 * @param medicalId
+	 *            the medical id
 	 * @param date
 	 *            the date
 	 * @param name
 	 *            the name
-	 * @param type
-	 *            the type
 	 * @param booster
 	 *            the booster
+	 * @param vaccine
+	 *            the vaccine
 	 */
-	public VaccinationEntity(final LocalDate date, final String name, final String type, final boolean booster)
+	public VaccinationEntity(
+		final String patientId,
+		final String medicalId,
+		final LocalDate date,
+		final String name,
+		final Boolean booster,
+		final Vaccine vaccine)
 	{
-		super(date, name, type);
+		super(patientId, medicalId, date, name);
 		this.booster = booster;
+		this.vaccine = vaccine;
 	}
 	
 	/**
@@ -44,20 +61,41 @@ public class VaccinationEntity extends AbstractTreatmentEntity
 	 *
 	 * @return the booster
 	 */
-	public boolean getBooster()
+	public Boolean getBooster()
 	{
 		return this.booster;
 	}
-
+	
 	/**
 	 * Sets the booster.
 	 *
 	 * @param booster
 	 *            the new booster
 	 */
-	public void setBooster(final boolean booster)
+	public void setBooster(final Boolean booster)
 	{
 		this.booster = booster;
+	}
+
+	/**
+	 * Gets the vaccine.
+	 *
+	 * @return the vaccine
+	 */
+	public Vaccine getVaccine()
+	{
+		return this.vaccine;
+	}
+
+	/**
+	 * Sets the vaccine.
+	 *
+	 * @param vaccine
+	 *            the new vaccine
+	 */
+	public void setVaccine(final Vaccine vaccine)
+	{
+		this.vaccine = vaccine;
 	}
 
 	/**
@@ -68,6 +106,7 @@ public class VaccinationEntity extends AbstractTreatmentEntity
 	@Override
 	public String toString()
 	{
-		return "VaccinationEntity [booster=" + this.booster + "]";
+		return "VaccinationEntity [booster=" + this.booster + ", vaccine=" + this.vaccine + "]";
 	}
+
 }

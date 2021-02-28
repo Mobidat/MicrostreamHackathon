@@ -56,8 +56,8 @@ public class MedicationPopup extends Dialog
 	 */
 	private void initCombos()
 	{
-		this.cmbMedication.setItemLabelGenerator(typ -> typ.toString());
-		this.cmbMedication.setItems(Medication.values().toString());
+
+		this.cmbMedication.setItems(Medication.values());
 		this.dateDate.setValue(LocalDate.now());
 	}
 	
@@ -139,7 +139,6 @@ public class MedicationPopup extends Dialog
 		this.binder                 = new Binder<>();
 
 		this.verticalLayout.setPadding(false);
-		this.horizontalLayoutBtnBar.setSpacing(false);
 		this.btnSave.setText("Save");
 		this.btnSave.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.btnSave.setIcon(IronIcons.SAVE.create());
@@ -157,10 +156,9 @@ public class MedicationPopup extends Dialog
 		this.binder.forField(this.dateDate).bind(MedicationEntity::getDate, MedicationEntity::setDate);
 		this.binder.forField(this.txtName).withNullRepresentation("").bind(MedicationEntity::getName,
 			MedicationEntity::setName);
-		this.binder.forField(this.cmbMedication).withNullRepresentation("").bind(MedicationEntity::getType,
-			MedicationEntity::setType);
 		this.binder.forField(this.nrDose).withConverter(ConverterBuilder.DoubleToInteger().build())
 			.bind(MedicationEntity::getDose, MedicationEntity::setDose);
+		this.binder.forField(this.cmbMedication).bind(MedicationEntity::getMedication, MedicationEntity::setMedication);
 
 		this.btnSave.setWidthFull();
 		this.btnSave.setHeight(null);
@@ -204,6 +202,7 @@ public class MedicationPopup extends Dialog
 	
 	// <generated-code name="variables">
 	private FormLayout               form;
+	private ComboBox<Medication>     cmbMedication;
 	private Button                   btnSave, btnCancel;
 	private DatePicker               dateDate;
 	private Binder<MedicationEntity> binder;
@@ -213,7 +212,6 @@ public class MedicationPopup extends Dialog
 	private Label                    lblDate, lblName, lblType, lblDose;
 	private TextField                txtName;
 	private FormItem                 formItem, formItem2, formItem3, formItem4;
-	private ComboBox<String>         cmbMedication;
 	// </generated-code>
 
 }

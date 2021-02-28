@@ -2,6 +2,7 @@
 package com.zillus.coronadiary.ui;
 
 import com.flowingcode.vaadin.addons.ironicons.IronIcons;
+import com.rapidclipse.framework.server.data.renderer.CaptionRenderer;
 import com.rapidclipse.framework.server.data.renderer.RenderedComponent;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEvent;
@@ -10,7 +11,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -31,11 +32,8 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	{
 		super();
 		this.initUI();
+		this.refresh();
 
-		if(TreatmentDAO.isTreatmentDB())
-		{
-			this.refresh();
-		}
 	}
 
 	@Override
@@ -108,7 +106,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	// <generated-code name="initUI">
 	private void initUI()
 	{
-		this.h1                = new H1();
+		this.h1                = new H4();
 		this.horizontalLayout  = new HorizontalLayout();
 		this.addSymptomBtn     = new Button();
 		this.addTestingBtn     = new Button();
@@ -117,7 +115,6 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 		this.gridTreatment     = new Grid<>(AbstractTreatmentEntity.class, false);
 
 		this.h1.setText("Patient");
-		this.horizontalLayout.setSpacing(false);
 		this.addSymptomBtn.setText("Symptom");
 		this.addSymptomBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.addSymptomBtn.setIcon(IronIcons.ADD.create());
@@ -130,16 +127,12 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 		this.addVaccinationBtn.setText("Vaccination");
 		this.addVaccinationBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.addVaccinationBtn.setIcon(IronIcons.ADD.create());
-		this.gridTreatment.addColumn(AbstractTreatmentEntity::getDate).setKey("date").setHeader("Date")
-			.setSortable(true)
-			.setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
+		this.gridTreatment.addColumn(new CaptionRenderer<>(AbstractTreatmentEntity::getDate)).setKey("date")
+			.setHeader("Date").setSortable(true).setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
 		this.gridTreatment.addColumn(AbstractTreatmentEntity::getName).setKey("name").setHeader("Name")
 			.setSortable(true);
-		this.gridTreatment.addColumn(AbstractTreatmentEntity::getType).setKey("type").setHeader("Type")
-			.setSortable(true);
 		this.gridTreatment.addColumn(RenderedComponent.Renderer(GenColTreatmentDetail::new)).setKey("renderer")
-			.setHeader("...")
-			.setSortable(false);
+			.setHeader("...").setSortable(false).setAutoWidth(true).setFlexGrow(0);
 		this.gridTreatment.setSelectionMode(Grid.SelectionMode.SINGLE);
 
 		this.addSymptomBtn.setWidthFull();
@@ -169,9 +162,9 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 
 	// <generated-code name="variables">
 	private Button                        addSymptomBtn, addTestingBtn, addMedicationBtn, addVaccinationBtn;
-	private H1                            h1;
 	private HorizontalLayout              horizontalLayout;
 	private Grid<AbstractTreatmentEntity> gridTreatment;
+	private H4                            h1;
 	// </generated-code>
 
 }

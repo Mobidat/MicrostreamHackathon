@@ -30,10 +30,10 @@ import com.zillus.coronadiary.domain.enums.Vaccine;
 
 public class VaccinationPopup extends Dialog
 {
-	
+
 	/** The vaccination entity. */
 	private final VaccinationEntity vaccinationEntity;
-	
+
 	/** The on oklistener. */
 	private Runnable onOklistener;
 
@@ -45,21 +45,20 @@ public class VaccinationPopup extends Dialog
 		super();
 		this.initUI();
 		this.initCombos();
-		
+
 		this.vaccinationEntity = new VaccinationEntity();
 		this.binder.readBean(this.vaccinationEntity);
 	}
-	
+
 	/**
 	 * Inits the combos.
 	 */
 	private void initCombos()
 	{
-		this.cmbVaccine.setItemLabelGenerator(typ -> typ.toString());
-		this.cmbVaccine.setItems(Vaccine.values().toString());
+		this.cmbVaccine.setItems(Vaccine.values());
 		this.dateDate.setValue(LocalDate.now());
 	}
-	
+
 	/**
 	 * Save binder.
 	 */
@@ -90,7 +89,7 @@ public class VaccinationPopup extends Dialog
 		this.onOklistener = listener;
 		return this;
 	}
-	
+
 	/**
 	 * Event handler delegate method for the {@link Button} {@link #btnCancel}.
 	 *
@@ -136,9 +135,8 @@ public class VaccinationPopup extends Dialog
 		this.lblBooster             = new Label();
 		this.chkBooster             = new Checkbox();
 		this.binder                 = new Binder<>();
-		
+
 		this.verticalLayout.setPadding(false);
-		this.horizontalLayoutBtnBar.setSpacing(false);
 		this.btnSave.setText("Save");
 		this.btnSave.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.btnSave.setIcon(IronIcons.SAVE.create());
@@ -153,15 +151,14 @@ public class VaccinationPopup extends Dialog
 		this.cmbVaccine.setItemLabelGenerator(ItemLabelGeneratorFactory.NonNull(CaptionUtils::resolveCaption));
 		this.lblBooster.setText("Is Booster");
 		this.chkBooster.setLabel("Booster Vacc");
-		
+
 		this.binder.forField(this.dateDate).bind(VaccinationEntity::getDate, VaccinationEntity::setDate);
 		this.binder.forField(this.txtName).asRequired().withNullRepresentation("").bind(VaccinationEntity::getName,
 			VaccinationEntity::setName);
-		this.binder.forField(this.cmbVaccine).withNullRepresentation("").bind(VaccinationEntity::getType,
-			VaccinationEntity::setType);
 		this.binder.forField(this.chkBooster).withNullRepresentation(false).bind(VaccinationEntity::getBooster,
 			VaccinationEntity::setBooster);
-		
+		this.binder.forField(this.cmbVaccine).bind(VaccinationEntity::getVaccine, VaccinationEntity::setVaccine);
+
 		this.btnSave.setWidthFull();
 		this.btnSave.setHeight(null);
 		this.btnCancel.setWidthFull();
@@ -197,7 +194,7 @@ public class VaccinationPopup extends Dialog
 		this.add(this.verticalLayout);
 		this.setWidth("90%");
 		this.setHeight("80%");
-		
+
 		this.btnSave.addClickListener(this::btnSave_onClick);
 		this.btnCancel.addClickListener(this::btnCancel_onClick);
 	} // </generated-code>
@@ -207,13 +204,13 @@ public class VaccinationPopup extends Dialog
 	private Checkbox                  chkBooster;
 	private Button                    btnSave, btnCancel;
 	private DatePicker                dateDate;
+	private ComboBox<Vaccine>         cmbVaccine;
 	private Binder<VaccinationEntity> binder;
 	private VerticalLayout            verticalLayout;
 	private HorizontalLayout          horizontalLayoutBtnBar;
 	private Label                     lblDate, lblName, lblType, lblBooster;
 	private TextField                 txtName;
 	private FormItem                  formItem, formItem2, formItem3, formItem4;
-	private ComboBox<String>          cmbVaccine;
 	// </generated-code>
 
 }

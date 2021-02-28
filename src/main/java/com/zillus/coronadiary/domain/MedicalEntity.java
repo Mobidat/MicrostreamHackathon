@@ -3,15 +3,16 @@ package com.zillus.coronadiary.domain;
 
 import com.zillus.coronadiary.domain.enums.Profession;
 
+
 /**
  * The Class MedicalEntity.
  */
 public class MedicalEntity extends AbstractPersonEntity
 {
-	
+
 	/** The profession. */
 	private Profession profession;
-	
+
 	/**
 	 * Instantiates a new medical entity.
 	 */
@@ -19,7 +20,7 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		super();
 	}
-
+	
 	/**
 	 * Instantiates a new medical entity.
 	 *
@@ -43,14 +44,14 @@ public class MedicalEntity extends AbstractPersonEntity
 		final String adress1,
 		final String adress2,
 		final String city,
-		final int zipCode,
+		final Integer zipCode,
 		final String country,
 		final Profession profession)
 	{
 		super(name, adress1, adress2, city, zipCode, country);
 		this.profession = profession;
 	}
-
+	
 	/**
 	 * Gets the profession.
 	 *
@@ -60,7 +61,7 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		return this.profession;
 	}
-	
+
 	/**
 	 * Sets the profession.
 	 *
@@ -71,7 +72,7 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		this.profession = profession;
 	}
-
+	
 	/**
 	 * To string.
 	 *
@@ -82,5 +83,5 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		return "MedicalEntity [profession=" + this.profession + "]";
 	}
-
+	
 }

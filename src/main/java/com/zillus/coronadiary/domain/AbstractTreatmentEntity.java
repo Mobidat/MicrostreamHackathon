@@ -6,40 +6,54 @@ import java.util.Objects;
 import java.util.UUID;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class AbstractTreatmentEntity.
  */
 public abstract class AbstractTreatmentEntity implements Comparable<AbstractTreatmentEntity>
 {
-
+	
 	/** The view id. */
 	protected final String viewId;
-
+	
 	/** The patient id. */
 	private String patientId;
-	
+
 	/** The medical id. */
 	private String medicalId;
-
+	
 	/** The date. */
 	private LocalDate date;
-
+	
 	/** The name. */
 	private String name;
-
-	/** The type. */
-	private String type;
-
-	public AbstractTreatmentEntity(final LocalDate date, final String name, final String type)
+	
+	/**
+	 * Instantiates a new abstract treatment entity.
+	 *
+	 * @param patientId
+	 *            the patient id
+	 * @param medicalId
+	 *            the medical id
+	 * @param date
+	 *            the date
+	 * @param name
+	 *            the name
+	 */
+	public AbstractTreatmentEntity(
+		final String patientId,
+		final String medicalId,
+		final LocalDate date,
+		final String name)
 	{
 		super();
-		
-		this.date   = date;
-		this.name   = name;
-		this.type   = type;
-		this.viewId = UUID.randomUUID().toString();
+		this.patientId = patientId;
+		this.medicalId = medicalId;
+		this.date      = date;
+		this.name      = name;
+		this.viewId    = UUID.randomUUID().toString();
 	}
-
+	
 	/**
 	 * Instantiates a new abstract treatment entity.
 	 */
@@ -47,7 +61,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.viewId = UUID.randomUUID().toString();
 	}
-
+	
 	/**
 	 * Gets the date.
 	 *
@@ -57,7 +71,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.date;
 	}
-	
+
 	/**
 	 * Sets the date.
 	 *
@@ -68,7 +82,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.date = date;
 	}
-	
+
 	/**
 	 * Gets the name.
 	 *
@@ -78,7 +92,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.name;
 	}
-	
+
 	/**
 	 * Sets the name.
 	 *
@@ -91,27 +105,6 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	}
 	
 	/**
-	 * Gets the type.
-	 *
-	 * @return the type
-	 */
-	public String getType()
-	{
-		return this.type;
-	}
-	
-	/**
-	 * Sets the type.
-	 *
-	 * @param type
-	 *            the new type
-	 */
-	public void setType(final String type)
-	{
-		this.type = type;
-	}
-	
-	/**
 	 * To string.
 	 *
 	 * @return the string
@@ -120,7 +113,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	public String toString()
 	{
 		return "AbstractTreatmentEntity [viewId=" + this.viewId + ", patientId=" + this.patientId + ", medicalId="
-			+ this.medicalId + ", date=" + this.date + ", name=" + this.name + ", type=" + this.type + "]";
+			+ this.medicalId + ", date=" + this.date + ", name=" + this.name + "]";
 	}
 	
 	/**
@@ -135,7 +128,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.date.compareTo(otherObject.date);
 	}
-	
+
 	/**
 	 * Gets the patient id.
 	 *
@@ -145,7 +138,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.patientId;
 	}
-	
+
 	/**
 	 * Sets the patient id.
 	 *
@@ -156,7 +149,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.patientId = patientId;
 	}
-
+	
 	/**
 	 * Gets the medical id.
 	 *
@@ -166,7 +159,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.medicalId;
 	}
-
+	
 	/**
 	 * Sets the medical id.
 	 *
@@ -177,7 +170,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.medicalId = medicalId;
 	}
-
+	
 	/**
 	 * Gets the view id.
 	 *
@@ -187,7 +180,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.viewId;
 	}
-	
+
 	/**
 	 * Hash code.
 	 *
@@ -203,7 +196,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return Objects.hash(this.viewId);
 	}
-	
+
 	/**
 	 * Equals.
 	 *
@@ -234,5 +227,5 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 		final AbstractTreatmentEntity other = (AbstractTreatmentEntity)obj;
 		return Objects.equals(this.viewId, other.viewId);
 	}
-	
+
 }

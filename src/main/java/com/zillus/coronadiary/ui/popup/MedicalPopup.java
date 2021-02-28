@@ -3,6 +3,7 @@ package com.zillus.coronadiary.ui.popup;
 
 import com.flowingcode.vaadin.addons.ironicons.IronIcons;
 import com.rapidclipse.framework.server.data.converter.ConverterBuilder;
+import com.rapidclipse.framework.server.resources.CaptionUtils;
 import com.rapidclipse.framework.server.ui.ItemLabelGeneratorFactory;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEvent;
@@ -41,11 +42,9 @@ public class MedicalPopup extends Dialog
 	{
 		super();
 		this.initUI();
-		this.cmbProfession.setItems(Profession.values());
-
+		this.initCombos();
 		this.medicalEntity = new MedicalEntity();
 		this.binder.readBean(this.medicalEntity);
-		this.onOklistener.run();
 	}
 
 	/**
@@ -57,12 +56,21 @@ public class MedicalPopup extends Dialog
 		{
 			this.binder.writeBean(this.medicalEntity);
 			PersonDAO.addEntity(this.medicalEntity);
+			this.onOklistener.run();
 		}
 		catch(final ValidationException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Inits the combos.
+	 */
+	private void initCombos()
+	{
+		this.cmbProfession.setItems(Profession.values());
 	}
 	
 	/**
@@ -133,9 +141,8 @@ public class MedicalPopup extends Dialog
 		this.lblProfession          = new Label();
 		this.cmbProfession          = new ComboBox<>();
 		this.binder                 = new Binder<>();
-
+		
 		this.verticalLayout.setPadding(false);
-		this.horizontalLayoutBtnBar.setSpacing(false);
 		this.btnSave.setText("Save");
 		this.btnSave.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.btnSave.setIcon(IronIcons.SAVE.create());
@@ -151,8 +158,8 @@ public class MedicalPopup extends Dialog
 		this.lblZipCode.setText("Zip Code");
 		this.lblCountry.setText("Country");
 		this.lblProfession.setText("profession");
-		this.cmbProfession.setItemLabelGenerator(ItemLabelGeneratorFactory.NonNull(Profession::getCaption));
-
+		this.cmbProfession.setItemLabelGenerator(ItemLabelGeneratorFactory.NonNull(CaptionUtils::resolveCaption));
+		
 		this.binder.forField(this.txtName).asRequired().withNullRepresentation("").bind(MedicalEntity::getName,
 			MedicalEntity::setName);
 		this.binder.forField(this.txtAdress1).withNullRepresentation("").bind(MedicalEntity::getAdress1,
@@ -166,7 +173,7 @@ public class MedicalPopup extends Dialog
 		this.binder.forField(this.txtCountry).withNullRepresentation("").bind(MedicalEntity::getCountry,
 			MedicalEntity::setCountry);
 		this.binder.forField(this.cmbProfession).bind(MedicalEntity::getProfession, MedicalEntity::setProfession);
-
+		
 		this.btnSave.setWidthFull();
 		this.btnSave.setHeight(null);
 		this.btnCancel.setWidthFull();
@@ -217,7 +224,7 @@ public class MedicalPopup extends Dialog
 		this.add(this.verticalLayout);
 		this.setWidth("90%");
 		this.setHeight("80%");
-
+		
 		this.btnSave.addClickListener(this::btnSave_onClick);
 		this.btnCancel.addClickListener(this::btnCancel_onClick);
 	} // </generated-code>
@@ -225,11 +232,11 @@ public class MedicalPopup extends Dialog
 	// <generated-code name="variables">
 	private FormLayout            form;
 	private Button                btnSave, btnCancel;
-	private ComboBox<Profession>  cmbProfession;
 	private NumberField           nrZipCode;
 	private VerticalLayout        verticalLayout;
 	private HorizontalLayout      horizontalLayoutBtnBar;
 	private Label                 lblName, lblAdress1, lblAdress2, lblCity, lblZipCode, lblCountry, lblProfession;
+	private ComboBox<Profession>  cmbProfession;
 	private TextField             txtName, txtAdress1, txtAdress2, txtCity, txtCountry;
 	private FormItem              formItem, formItem2, formItem3, formItem4, formItem5, formItem6, formItem7;
 	private Binder<MedicalEntity> binder;

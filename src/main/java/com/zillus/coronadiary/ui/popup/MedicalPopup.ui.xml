@@ -14,13 +14,13 @@
 <?import com.vaadin.flow.component.textfield.TextField?>
 <?import com.vaadin.flow.data.binder.Binder?>
 <?import com.zillus.coronadiary.domain.MedicalEntity?>
-<?import com.zillus.coronadiary.domain.enums.Professionession?>
+<?import com.zillus.coronadiary.domain.enums.Profession?>
 <?import java.lang.String?>
 <Dialog xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="MedicalPopup">
     <x:constraints zpos="0" width="90%" height="80%" />
     <VerticalLayout x:name="verticalLayout" padding="false">
         <x:constraints zpos="0" width="-1px" height="-1px" />
-        <HorizontalLayout spacing="false" x:name="horizontalLayoutBtnBar">
+        <HorizontalLayout x:name="horizontalLayoutBtnBar">
             <x:constraints width="100%" height="0px" flex-grow="0.0" />
             <Button x:themeVariants="LUMO_SUCCESS" x:name="btnSave" text="Save">
                 <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#SAVE" />
@@ -120,7 +120,6 @@
                         <typeArgument type="Profession" />
                     </x:typeArguments>
                     <x:constraints width="100%" height="0px" />
-                    <x:itemLabel type="Property" data="caption" />
                 </ComboBox>
             </FormItem>
             <Binder x:name="binder">

@@ -15,13 +15,14 @@
 <?import com.vaadin.flow.component.textfield.TextField?>
 <?import com.vaadin.flow.data.binder.Binder?>
 <?import com.zillus.coronadiary.domain.TestingEntity?>
+<?import com.zillus.coronadiary.domain.enums.Testprocedure?>
 <?import java.lang.String?>
 <?import java.time.LocalDate?>
 <Dialog xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="TestingPopup">
     <x:constraints zpos="0" width="90%" height="80%" />
     <VerticalLayout x:name="verticalLayout" padding="false">
         <x:constraints zpos="0" width="-1px" height="-1px" />
-        <HorizontalLayout spacing="false" x:name="horizontalLayoutBtnBar">
+        <HorizontalLayout x:name="horizontalLayoutBtnBar">
             <x:constraints width="100%" height="0px" flex-grow="0.0" />
             <Button x:themeVariants="LUMO_SUCCESS" x:name="btnSave" text="Save">
                 <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#SAVE" />
@@ -70,7 +71,7 @@
                 </Label>
                 <ComboBox x:name="cmbTest">
                     <x:typeArguments>
-                        <typeArgument type="String" />
+                        <typeArgument type="Testprocedure" />
                     </x:typeArguments>
                     <x:constraints width="100%" height="0px" />
                 </ComboBox>
@@ -98,10 +99,10 @@
                     <binding field="txtName" property="name" required="false" nullRepresentation="" readOnly="false">
                         <validator type="Bean" />
                     </binding>
-                    <binding field="cmbTest" property="type" required="false" nullRepresentation="" readOnly="false">
+                    <binding field="chkResult" property="result" required="false" nullRepresentation="false" readOnly="false">
                         <validator type="Bean" />
                     </binding>
-                    <binding field="chkResult" property="result" required="false" nullRepresentation="false" readOnly="false">
+                    <binding field="cmbTest" property="testprocedure" required="false" readOnly="false">
                         <validator type="Bean" />
                     </binding>
                 </x:bindings>
