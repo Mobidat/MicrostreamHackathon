@@ -1,10 +1,14 @@
 
 package com.zillus.coronadiary.ui;
 
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.zillus.coronadiary.HasTitle;
+import com.zillus.coronadiary.dal.PersonDAO;
+import com.zillus.coronadiary.dal.TreatmentDAO;
 
 
 @Route(value = "", layout = MainLayout.class)
@@ -14,6 +18,16 @@ public class HomeView extends VerticalLayout implements HasTitle
 	{
 		super();
 		this.initUI();
+		this.initData();
+	}
+
+	/**
+	 * Inits the data.
+	 */
+	private void initData()
+	{
+		this.h2Items.setText("Number of diary items: " + TreatmentDAO.findAll().size());
+		this.h2Patient.setText("Number of persons registered: " + PersonDAO.findAll().size());
 	}
 
 	@Override
@@ -26,27 +40,31 @@ public class HomeView extends VerticalLayout implements HasTitle
 	// <generated-code name="initUI">
 	private void initUI()
 	{
-		this.h2    = new H2();
-		this.h22   = new H2();
-		this.h222  = new H2();
-		this.h2222 = new H2();
+		this.headLine  = new H1();
+		this.h22       = new H2();
+		this.h2Items   = new H2();
+		this.h2Patient = new H2();
 
 		this.setSpacing(false);
-		this.h2.setText("Corona Diary (c)2021 Frank Zillus");
-		this.h22.setText("Number of Persons");
-		this.h222.setText("Number of Diary Items");
-		this.h2222.setText("Selected Patient");
+		this.headLine.setText("Corona Diary");
+		this.headLine.getStyle().set("font-family", "times");
+		this.headLine.getStyle().set("color", "Orange");
+		this.h22.setText("by Frank Zillus 2021");
+		this.h2Items.setText("none");
+		this.h2Patient.setText("none");
 
-		this.h2.setSizeUndefined();
+		this.headLine.setSizeUndefined();
 		this.h22.setSizeUndefined();
-		this.h222.setSizeUndefined();
-		this.h2222.setSizeUndefined();
-		this.add(this.h2, this.h22, this.h222, this.h2222);
+		this.h2Items.setSizeUndefined();
+		this.h2Patient.setSizeUndefined();
+		this.add(this.headLine, this.h22, this.h2Items, this.h2Patient);
+		this.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, this.headLine);
 		this.setSizeUndefined();
 	} // </generated-code>
-	
+
 	// <generated-code name="variables">
-	private H2 h2, h22, h222, h2222;
+	private H1 headLine;
+	private H2 h22, h2Items, h2Patient;
 	// </generated-code>
 
 }

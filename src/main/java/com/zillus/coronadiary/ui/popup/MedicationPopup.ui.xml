@@ -14,6 +14,7 @@
 <?import com.vaadin.flow.component.textfield.NumberField?>
 <?import com.vaadin.flow.component.textfield.TextField?>
 <?import com.vaadin.flow.data.binder.Binder?>
+<?import com.zillus.coronadiary.domain.MedicalEntity?>
 <?import com.zillus.coronadiary.domain.MedicationEntity?>
 <?import com.zillus.coronadiary.domain.enums.Medication?>
 <?import java.lang.String?>
@@ -108,6 +109,20 @@
                     </binding>
                 </x:bindings>
             </Binder>
+            <FormItem x:name="formItem5">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblMedical" text="Your medical advisor">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <ComboBox x:name="cmbMedical">
+                    <x:typeArguments>
+                        <typeArgument type="MedicalEntity" />
+                    </x:typeArguments>
+                    <x:constraints width="100%" height="0px" />
+                    <x:itemLabel type="Mixed" data="{%name} in {%city}" />
+                    <x:event>valueChange.valueChanged</x:event>
+                </ComboBox>
+            </FormItem>
         </FormLayout>
     </VerticalLayout>
 </Dialog>
