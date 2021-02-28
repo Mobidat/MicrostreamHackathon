@@ -16,6 +16,7 @@ import com.vaadin.flow.router.Route;
 import com.zillus.coronadiary.HasTitle;
 import com.zillus.coronadiary.dal.PersonDAO;
 import com.zillus.coronadiary.domain.MedicalEntity;
+import com.zillus.coronadiary.ui.gencolumn.GenColMedicalDetail;
 import com.zillus.coronadiary.ui.popup.MedicalPopup;
 
 

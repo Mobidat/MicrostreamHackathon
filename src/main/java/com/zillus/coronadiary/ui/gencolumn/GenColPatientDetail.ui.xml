@@ -3,12 +3,17 @@
 <?xdevuiml version="1.0"?>
 <?template BROWSER_XGA?>
 <?import com.vaadin.flow.component.button.Button?>
-<?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
-<VerticalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" x:name="GenColMedicalDetail">
+<?import com.vaadin.flow.component.orderedlayout.HorizontalLayout?>
+<HorizontalLayout xmlns:x="http://xml.xdev-software.com/xdevuiml" spacing="false" x:name="GenColPatientDetail">
     <x:constraints width="-1px" zpos="0" height="-1px" />
     <Button x:themeVariants="LUMO_SMALL LUMO_TERTIARY" x:name="btnEdit">
         <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#SEARCH" />
         <x:constraints width="0px" height="0px" flex-grow="0.0" />
         <x:event>click.onComponentEvent</x:event>
     </Button>
-</VerticalLayout>
+    <Button x:themeVariants="LUMO_SMALL LUMO_TERTIARY LUMO_ERROR" x:name="btnDelete">
+        <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#TRASH" />
+        <x:constraints width="0px" height="0px" flex-grow="0.0" />
+        <x:event>click.onComponentEvent</x:event>
+    </Button>
+</HorizontalLayout>

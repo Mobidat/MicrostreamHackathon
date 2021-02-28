@@ -35,7 +35,7 @@
             <column property="city" header="City" sortable="true" />
             <column property="zipCode" header="Zip Code" sortable="true" />
             <column property="renderer" header="..." autoWidth="true" flexGrow="0">
-                <renderer type="RenderedComponent" renderedComponent="com.zillus.coronadiary.ui.GenColMedicalDetail" />
+                <renderer type="RenderedComponent" renderedComponent="com.zillus.coronadiary.ui.gencolumn.GenColMedicalDetail" />
             </column>
         </x:columns>
     </Grid>
