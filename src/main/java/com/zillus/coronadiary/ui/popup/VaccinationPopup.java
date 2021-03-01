@@ -1,18 +1,19 @@
 /*******************************************************************************
  * Copyright 2021 Frank Zillus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
  * of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
+
 package com.zillus.coronadiary.ui.popup;
 
 import java.time.LocalDate;
@@ -35,6 +36,8 @@ import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.formlayout.FormLayout.FormItem;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -74,7 +77,21 @@ public class VaccinationPopup extends Dialog
 		
 		this.patientEntity     = UI.getCurrent().getSession().getAttribute(PatientEntity.class);
 		this.vaccinationEntity = new VaccinationEntity();
+		this.initBinder();
+	}
+
+	/**
+	 * Inits the binder.
+	 */
+	private void initBinder()
+	{
 		this.binder.readBean(this.vaccinationEntity);
+		this.binder.addStatusChangeListener(event -> {
+			final boolean isValid    = event.getBinder().isValid();
+			final boolean hasChanges = event.getBinder().hasChanges();
+			
+			this.btnSave.setEnabled(hasChanges && isValid);
+		});
 	}
 	
 	/**
@@ -107,11 +124,11 @@ public class VaccinationPopup extends Dialog
 			}
 			TreatmentDAO.addEntity(this.vaccinationEntity);
 			this.onOklistener.run();
+			this.close();
 		}
 		catch(final ValidationException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Notification.show(e.getMessage(), 3000, Position.BOTTOM_CENTER);
 		}
 	}
 	
