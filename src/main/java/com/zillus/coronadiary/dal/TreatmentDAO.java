@@ -81,16 +81,6 @@ public class TreatmentDAO
 	{
 		return DB.root().getTreatmentEntities();
 	}
-	
-	/**
-	 * Checks if is treatment DB.
-	 *
-	 * @return true, if is treatment DB
-	 */
-	public static boolean isTreatmentDB()
-	{
-		return DB.root().isTreatments();
-	}
 
 	/**
 	 * Find all medical.
@@ -160,7 +150,7 @@ public class TreatmentDAO
 	public static List<AbstractTreatmentEntity> getPatientTreatments(final String patientId)
 	{
 		return TreatmentDAO.findAll().stream()
-			.filter(t -> t.getPatientId() == patientId)
+			.filter(t -> t.getPatientId().equals(patientId))
 			.sorted()
 			.collect(Collectors.toList());
 	}
