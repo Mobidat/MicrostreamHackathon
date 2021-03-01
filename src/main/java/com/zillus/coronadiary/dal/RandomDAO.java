@@ -34,10 +34,10 @@ import com.zillus.coronadiary.domain.enums.Vaccine;
  */
 public class RandomDAO
 {
-
+	
 	/** The faker. */
 	private static final Faker FAKER = Faker.instance();
-
+	
 	/**
 	 * Creates the vaccinations.
 	 *
@@ -49,13 +49,13 @@ public class RandomDAO
 	public static List<VaccinationEntity> createVaccinations(final int numVaccination, final String patienId)
 	{
 		final List<VaccinationEntity> vaccinations = new ArrayList<>();
-
+		
 		final DateAndTime date    = RandomDAO.FAKER.date();
 		final Medical     medical = RandomDAO.FAKER.medical();
-
+		
 		final Bool                bool       = RandomDAO.FAKER.bool();
 		final RandomEnum<Vaccine> randomEnum = new RandomEnum<>(Vaccine.class);
-
+		
 		for(int i = 0; i < numVaccination; i++)
 		{
 			vaccinations.add(new VaccinationEntity(patienId, null,
@@ -65,7 +65,7 @@ public class RandomDAO
 		}
 		return vaccinations;
 	}
-
+	
 	/**
 	 * Creates the testings.
 	 *
@@ -77,13 +77,13 @@ public class RandomDAO
 	public static List<TestingEntity> createTestings(final int numTesting, final String patienId)
 	{
 		final List<TestingEntity> testings = new ArrayList<>();
-
+		
 		final DateAndTime date    = RandomDAO.FAKER.date();
 		final Medical     medical = RandomDAO.FAKER.medical();
-
+		
 		final Bool                      bool       = RandomDAO.FAKER.bool();
 		final RandomEnum<Testprocedure> randomEnum = new RandomEnum<>(Testprocedure.class);
-
+		
 		for(int i = 0; i < numTesting; i++)
 		{
 			testings.add(new TestingEntity(patienId, null,
@@ -93,7 +93,7 @@ public class RandomDAO
 		}
 		return testings;
 	}
-
+	
 	/**
 	 * Creates the symptoms.
 	 *
@@ -105,12 +105,12 @@ public class RandomDAO
 	public static List<SymptomEntity> createSymptoms(final int numSymptom, final String patienId)
 	{
 		final List<SymptomEntity> symptoms = new ArrayList<>();
-
+		
 		final DateAndTime          date       = RandomDAO.FAKER.date();
 		final Medical              medical    = RandomDAO.FAKER.medical();
 		final Number               number     = RandomDAO.FAKER.number();
 		final RandomEnum<Symptoms> randomEnum = new RandomEnum<>(Symptoms.class);
-
+		
 		for(int i = 0; i < numSymptom; i++)
 		{
 			symptoms.add(new SymptomEntity(patienId, null,
@@ -120,7 +120,7 @@ public class RandomDAO
 		}
 		return symptoms;
 	}
-
+	
 	/**
 	 * Creates the medications.
 	 *
@@ -132,12 +132,12 @@ public class RandomDAO
 	public static List<MedicationEntity> createMedications(final int numMedication, final String patienId)
 	{
 		final List<MedicationEntity> medications = new ArrayList<>();
-
+		
 		final DateAndTime            date       = RandomDAO.FAKER.date();
 		final Medical                medical    = RandomDAO.FAKER.medical();
 		final Number                 number     = RandomDAO.FAKER.number();
 		final RandomEnum<Medication> randomEnum = new RandomEnum<>(Medication.class);
-
+		
 		for(int i = 0; i < numMedication; i++)
 		{
 			medications.add(new MedicationEntity(patienId, null,
@@ -146,7 +146,7 @@ public class RandomDAO
 		}
 		return medications;
 	}
-
+	
 	/**
 	 * Creates the medicals.
 	 *
@@ -156,20 +156,20 @@ public class RandomDAO
 	 */
 	public static List<MedicalEntity> createMedicals(final int numMedicals)
 	{
-
+		
 		final List<MedicalEntity> medicals = new ArrayList<>();
-
+		
 		final Address                add        = RandomDAO.FAKER.address();
 		final RandomEnum<Profession> randomEnum = new RandomEnum<>(Profession.class);
-
+		
 		for(int i = 0; i < numMedicals; i++)
 		{
 			medicals.add(new MedicalEntity(add.lastName(), add.streetAddress(), add.secondaryAddress(), add.city(),
-				Integer.decode(add.zipCode()), add.country(), randomEnum.random()));
+				add.zipCode(), add.country(), randomEnum.random()));
 		}
 		return medicals;
 	}
-
+	
 	/**
 	 * Creates the patients.
 	 *
@@ -182,21 +182,21 @@ public class RandomDAO
 	{
 		/** The patients. */
 		final List<PatientEntity> patients = new ArrayList<>();
-
+		
 		final Address            add        = RandomDAO.FAKER.address();
 		final DateAndTime        date       = RandomDAO.FAKER.date();
 		final RandomEnum<Gender> randomEnum = new RandomEnum<>(Gender.class);
-
+		
 		for(int i = 0; i < numPatients; i++)
 		{
-
+			
 			patients.add(new PatientEntity(add.lastName(), add.streetAddress(), add.secondaryAddress(), add.city(),
-				Integer.decode(add.zipCode()), add.country(),
+				add.zipCode(), add.country(),
 				LocalDate.ofInstant(date.birthday(20, 70).toInstant(), ZoneId.systemDefault()), randomEnum.random()));
 		}
 		return patients;
 	}
-
+	
 	/**
 	 * The Class RandomEnum.
 	 *
@@ -205,13 +205,13 @@ public class RandomDAO
 	 */
 	private static class RandomEnum<E extends Enum<E>>
 	{
-
+		
 		/** The Constant RND. */
 		private static final Random RND = ThreadLocalRandom.current();
-
+		
 		/** The values. */
 		private final E[] values;
-
+		
 		/**
 		 * Instantiates a new random enum.
 		 *
@@ -222,7 +222,7 @@ public class RandomDAO
 		{
 			this.values = token.getEnumConstants();
 		}
-
+		
 		/**
 		 * Random.
 		 *

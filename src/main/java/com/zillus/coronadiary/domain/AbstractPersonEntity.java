@@ -1,18 +1,19 @@
 /*******************************************************************************
  * Copyright 2021 Frank Zillus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
  * of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
+
 package com.zillus.coronadiary.domain;
 
 import java.util.Objects;
@@ -25,28 +26,28 @@ import java.util.UUID;
  */
 public abstract class AbstractPersonEntity implements Comparable<AbstractPersonEntity>
 {
-
+	
 	/** The id. */
 	protected final String viewId;
-
+	
 	/** The name. */
 	private String name;
-	
+
 	/** The adress 1. */
 	private String adress1;
-	
+
 	/** The adress 2. */
 	private String adress2;
-	
+
 	/** The city. */
 	private String city;
-	
+
 	/** The zip code. */
-	private Integer zipCode;
-	
+	private String zipCode;
+
 	/** The country. */
 	private String country;
-
+	
 	/**
 	 * Instantiates a new abstract person entity.
 	 *
@@ -70,7 +71,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 		final String adress1,
 		final String adress2,
 		final String city,
-		final Integer zipCode,
+		final String zipCode,
 		final String country)
 	{
 		super();
@@ -82,14 +83,14 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 		this.zipCode = zipCode;
 		this.country = country;
 	}
-	
+
 	public AbstractPersonEntity()
 	{
 		super();
 		this.viewId = UUID.randomUUID().toString();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Gets the name.
 	 *
@@ -99,7 +100,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return this.name;
 	}
-
+	
 	/**
 	 * Sets the name.
 	 *
@@ -110,7 +111,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		this.name = name;
 	}
-
+	
 	/**
 	 * Gets the adress 1.
 	 *
@@ -120,7 +121,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return this.adress1;
 	}
-
+	
 	/**
 	 * Sets the adress 1.
 	 *
@@ -131,7 +132,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		this.adress1 = adress1;
 	}
-
+	
 	/**
 	 * Gets the adress 2.
 	 *
@@ -141,7 +142,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return this.adress2;
 	}
-
+	
 	/**
 	 * Sets the adress 2.
 	 *
@@ -152,7 +153,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		this.adress2 = adress2;
 	}
-
+	
 	/**
 	 * Gets the city.
 	 *
@@ -162,7 +163,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return this.city;
 	}
-
+	
 	/**
 	 * Sets the city.
 	 *
@@ -173,28 +174,28 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		this.city = city;
 	}
-
+	
 	/**
 	 * Gets the zip code.
 	 *
 	 * @return the zip code
 	 */
-	public Integer getZipCode()
+	public String getZipCode()
 	{
 		return this.zipCode;
 	}
-
+	
 	/**
 	 * Sets the zip code.
 	 *
 	 * @param zipCode
 	 *            the new zip code
 	 */
-	public void setZipCode(final Integer zipCode)
+	public void setZipCode(final String zipCode)
 	{
 		this.zipCode = zipCode;
 	}
-
+	
 	/**
 	 * Gets the country.
 	 *
@@ -204,7 +205,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return this.country;
 	}
-
+	
 	/**
 	 * Sets the country.
 	 *
@@ -215,7 +216,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		this.country = country;
 	}
-
+	
 	@Override
 	public String toString()
 	{
@@ -223,7 +224,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 			+ ", adress2=" + this.adress2 + ", city=" + this.city + ", zipCode=" + this.zipCode + ", country="
 			+ this.country + "]";
 	}
-
+	
 	/**
 	 * Compare to.
 	 *
@@ -235,9 +236,9 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	public int compareTo(final AbstractPersonEntity otherObject)
 	{
 		return this.name.compareTo(otherObject.name);
-		
+
 	}
-	
+
 	/**
 	 * Gets the view id.
 	 *
@@ -247,7 +248,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return this.viewId;
 	}
-
+	
 	/**
 	 * Hash code.
 	 *
@@ -263,7 +264,7 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	{
 		return Objects.hash(this.viewId);
 	}
-
+	
 	/**
 	 * Equals.
 	 *
@@ -294,5 +295,5 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 		final AbstractPersonEntity other = (AbstractPersonEntity)obj;
 		return Objects.equals(this.viewId, other.viewId);
 	}
-	
+
 }

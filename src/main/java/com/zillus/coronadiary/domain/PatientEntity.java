@@ -1,18 +1,19 @@
 /*******************************************************************************
  * Copyright 2021 Frank Zillus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
  * of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
+
 package com.zillus.coronadiary.domain;
 
 import java.time.LocalDate;
@@ -25,19 +26,19 @@ import com.zillus.coronadiary.domain.enums.Gender;
  */
 public class PatientEntity extends AbstractPersonEntity
 {
-	
+
 	/** The birthday. */
 	private LocalDate birthday;
-	
+
 	/** The gender. */
 	private Gender gender;
-	
+
 	public PatientEntity(
 		final String name,
 		final String adress1,
 		final String adress2,
 		final String city,
-		final Integer zipCode,
+		final String zipCode,
 		final String country,
 		final LocalDate birthday,
 		final Gender gender)
@@ -46,7 +47,7 @@ public class PatientEntity extends AbstractPersonEntity
 		this.birthday = birthday;
 		this.gender   = gender;
 	}
-	
+
 	/**
 	 * Instantiates a new patient entity.
 	 */
@@ -54,7 +55,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		super();
 	}
-	
+
 	/**
 	 * Gets the birthday.
 	 *
@@ -64,7 +65,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		return this.birthday;
 	}
-	
+
 	/**
 	 * Sets the birthday.
 	 *
@@ -75,7 +76,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		this.birthday = birthday;
 	}
-	
+
 	/**
 	 * Gets the gender.
 	 *
@@ -85,7 +86,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		return this.gender;
 	}
-	
+
 	/**
 	 * Sets the gender.
 	 *
@@ -96,7 +97,7 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		this.gender = gender;
 	}
-	
+
 	/**
 	 * To string.
 	 *
@@ -107,5 +108,5 @@ public class PatientEntity extends AbstractPersonEntity
 	{
 		return "PatientEntity [birthday=" + this.birthday + ", gender=" + this.gender + "]";
 	}
-	
+
 }

@@ -17,7 +17,7 @@
             <typeArgument type="PatientEntity" />
         </x:typeArguments>
         <x:constraints width="100%" height="0px" flex-grow="0.0" />
-        <x:itemLabel type="Property" data="name" />
+        <x:itemLabel type="Mixed" data="{%name} {%birthday} from {%city}" />
         <x:event>valueChange.valueChanged</x:event>
     </ComboBox>
     <HorizontalLayout x:name="horizontalLayout">
@@ -48,13 +48,17 @@
             <x:event>click.onComponentEvent</x:event>
         </Button>
     </HorizontalLayout>
-    <Grid x:name="gridTreatment">
+    <Grid pageSize="60" x:name="gridTreatment">
         <x:typeArguments>
             <typeArgument type="AbstractTreatmentEntity" />
         </x:typeArguments>
         <x:constraints width="100%" height="-1px" flex-grow="1.0" />
         <x:columns>
-            <column property="date" header="Date" sortable="true" autoWidth="true" flexGrow="0" textAlign="CENTER" />
+            <column property="date" header="Date" frozen="true" sortable="true" autoWidth="true" flexGrow="0" textAlign="CENTER">
+                <renderer type="LocalDateRenderer" nullRepresentation="No date">
+                    <dateTimeFormatter zone="default" format="LocalizedDate" dateFormatStyle="LONG" locale="default" />
+                </renderer>
+            </column>
             <column property="name" header="Name" sortable="true" />
             <column property="renderer" header="..." autoWidth="true" flexGrow="0">
                 <renderer type="RenderedComponent" renderedComponent="com.zillus.coronadiary.ui.gencolumn.GenColTreatmentDetail" />

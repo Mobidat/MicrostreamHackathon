@@ -1,18 +1,19 @@
 /*******************************************************************************
  * Copyright 2021 Frank Zillus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
  * of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
+
 package com.zillus.coronadiary.domain;
 
 import com.zillus.coronadiary.domain.enums.Profession;
@@ -23,10 +24,10 @@ import com.zillus.coronadiary.domain.enums.Profession;
  */
 public class MedicalEntity extends AbstractPersonEntity
 {
-
+	
 	/** The profession. */
 	private Profession profession;
-
+	
 	/**
 	 * Instantiates a new medical entity.
 	 */
@@ -34,7 +35,7 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		super();
 	}
-	
+
 	/**
 	 * Instantiates a new medical entity.
 	 *
@@ -58,14 +59,14 @@ public class MedicalEntity extends AbstractPersonEntity
 		final String adress1,
 		final String adress2,
 		final String city,
-		final Integer zipCode,
+		final String zipCode,
 		final String country,
 		final Profession profession)
 	{
 		super(name, adress1, adress2, city, zipCode, country);
 		this.profession = profession;
 	}
-	
+
 	/**
 	 * Gets the profession.
 	 *
@@ -75,7 +76,7 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		return this.profession;
 	}
-
+	
 	/**
 	 * Sets the profession.
 	 *
@@ -86,7 +87,7 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		this.profession = profession;
 	}
-	
+
 	/**
 	 * To string.
 	 *
@@ -97,5 +98,5 @@ public class MedicalEntity extends AbstractPersonEntity
 	{
 		return "MedicalEntity [profession=" + this.profession + "]";
 	}
-	
+
 }

@@ -57,7 +57,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 	 */
 	private void createRandomMedicals()
 	{
-		PersonDAO.storeMedicals(RandomDAO.createMedicals(500));
+		PersonDAO.storeMedicals(RandomDAO.createMedicals(200));
 		this.initData();
 	}
 	
@@ -66,7 +66,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 	 */
 	private void createRandomPatients()
 	{
-		PersonDAO.storePatients(RandomDAO.createPatients(500));
+		PersonDAO.storePatients(RandomDAO.createPatients(200));
 		this.initData();
 	}
 	
@@ -136,27 +136,30 @@ public class HomeView extends VerticalLayout implements HasTitle
 		this.btnPatients.setWidthFull();
 		this.btnPatients.setHeight(null);
 		this.horizontalLayout2.add(this.h2Patient, this.btnPatients);
+		this.horizontalLayout2.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.h2Patient);
 		this.horizontalLayout2.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.btnPatients);
 		this.h2Medicals.setWidthFull();
 		this.h2Medicals.setHeight(null);
 		this.btnMedicals.setWidthFull();
 		this.btnMedicals.setHeight(null);
 		this.horizontalLayout3.add(this.h2Medicals, this.btnMedicals);
+		this.horizontalLayout3.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.h2Medicals);
 		this.horizontalLayout3.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.btnMedicals);
 		this.h2Entries.setWidthFull();
 		this.h2Entries.setHeight(null);
 		this.btnEntries.setWidthFull();
 		this.btnEntries.setHeight(null);
 		this.horizontalLayout.add(this.h2Entries, this.btnEntries);
+		this.horizontalLayout.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.h2Entries);
 		this.horizontalLayout.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.btnEntries);
 		this.headLine.setSizeUndefined();
 		this.h22.setSizeUndefined();
 		this.horizontalLayout2.setWidthFull();
-		this.horizontalLayout2.setHeight("100px");
+		this.horizontalLayout2.setHeight(null);
 		this.horizontalLayout3.setWidthFull();
-		this.horizontalLayout3.setHeight("100px");
+		this.horizontalLayout3.setHeight(null);
 		this.horizontalLayout.setWidthFull();
-		this.horizontalLayout.setHeight("100px");
+		this.horizontalLayout.setHeight(null);
 		this.add(this.headLine, this.h22, this.horizontalLayout2, this.horizontalLayout3, this.horizontalLayout);
 		this.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, this.headLine);
 		this.setSizeUndefined();

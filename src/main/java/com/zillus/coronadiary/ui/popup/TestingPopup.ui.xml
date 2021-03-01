@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright 2021 Frank Zillus
-  
-  Licensed under the Apache License, Version 2.0 (the "License"); you may not
-  use this file except in compliance with the License.  You may obtain a copy
-  of the License at
-  
-    http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-  License for the specific language governing permissions and limitations under
-  the License.
--->
 <!DOCTYPE xml>
 <?xdevuiml version="1.0"?>
 <?template BROWSER_XGA?>
@@ -61,7 +46,7 @@
                 <Label x:name="lblDate" text="Test Date">
                     <x:constraints width="0px" label="true" height="0px" />
                 </Label>
-                <DatePicker x:name="dateDate">
+                <DatePicker required="true" x:name="dateDate" requiredIndicatorVisible="true" placeholder="Date" initialPosition="2021-03-01">
                     <x:typeArguments>
                         <typeArgument type="LocalDate" />
                     </x:typeArguments>
@@ -73,7 +58,7 @@
                 <Label x:name="lblName" text="Test Name">
                     <x:constraints width="0px" label="true" height="0px" />
                 </Label>
-                <TextField x:name="txtName">
+                <TextField x:name="txtName" clearButtonVisible="true">
                     <x:constraints width="100%" height="0px" />
                     <x:typeArguments>
                         <typeArgument type="String" />

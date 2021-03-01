@@ -16,8 +16,12 @@
 
 package com.zillus.coronadiary.ui;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 import com.flowingcode.vaadin.addons.ironicons.IronIcons;
 import com.rapidclipse.framework.server.data.renderer.RenderedComponent;
+import com.rapidclipse.framework.server.resources.CaptionUtils;
 import com.rapidclipse.framework.server.ui.ItemLabelGeneratorFactory;
 import com.vaadin.flow.component.AbstractField.ComponentValueChangeEvent;
 import com.vaadin.flow.component.ClickEvent;
@@ -32,6 +36,7 @@ import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.data.renderer.LocalDateRenderer;
 import com.vaadin.flow.router.Route;
 import com.zillus.coronadiary.HasTitle;
 import com.zillus.coronadiary.dal.PersonDAO;
@@ -176,7 +181,8 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 		this.gridTreatment     = new Grid<>(AbstractTreatmentEntity.class, false);
 
 		this.cmbPatient.setLabel("Patient");
-		this.cmbPatient.setItemLabelGenerator(ItemLabelGeneratorFactory.NonNull(PatientEntity::getName));
+		this.cmbPatient.setItemLabelGenerator(
+			ItemLabelGeneratorFactory.NonNull(v -> CaptionUtils.resolveCaption(v, "{%name} {%birthday} from {%city}")));
 		this.addSymptomBtn.setText("Symptom");
 		this.addSymptomBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.addSymptomBtn.setIcon(IronIcons.ADD.create());
@@ -192,9 +198,12 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 		this.btnCancel.setText("Cancel");
 		this.btnCancel.addThemeVariants(ButtonVariant.LUMO_ERROR);
 		this.btnCancel.setIcon(IronIcons.CANCEL.create());
-		this.gridTreatment.addColumn(AbstractTreatmentEntity::getDate).setKey("date").setHeader("Date")
-			.setSortable(true)
-			.setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
+		this.gridTreatment.setPageSize(60);
+		this.gridTreatment
+			.addColumn(new LocalDateRenderer<>(AbstractTreatmentEntity::getDate,
+				DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG), "No date"))
+			.setKey("date").setHeader("Date").setFrozen(true).setSortable(true).setAutoWidth(true).setFlexGrow(0)
+			.setTextAlign(ColumnTextAlign.CENTER);
 		this.gridTreatment.addColumn(AbstractTreatmentEntity::getName).setKey("name").setHeader("Name")
 			.setSortable(true);
 		this.gridTreatment.addColumn(RenderedComponent.Renderer(GenColTreatmentDetail::new)).setKey("renderer")

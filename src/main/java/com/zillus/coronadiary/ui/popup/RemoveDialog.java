@@ -129,21 +129,20 @@ public class RemoveDialog extends Dialog
 		this.horizontalLayout = new HorizontalLayout();
 		this.btnOK            = new Button();
 		this.btnCancel        = new Button();
-
+		
 		this.setCloseOnEsc(false);
 		this.setCloseOnOutsideClick(false);
 		this.verticalLayout.setSpacing(false);
 		this.verticalLayout.setPadding(false);
 		this.lblTitel.setText("Label");
 		this.lblTitel.getStyle().set("font-size", "x-large");
-		this.horizontalLayout.setSpacing(false);
 		this.btnOK.setText("Delete");
 		this.btnOK.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_SUCCESS);
 		this.btnOK.setIcon(VaadinIcon.TRASH.create());
 		this.btnCancel.setText("Cancel");
 		this.btnCancel.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_ERROR);
 		this.btnCancel.setIcon(IronIcons.CANCEL.create());
-
+		
 		this.btnOK.setWidthFull();
 		this.btnOK.setHeight(null);
 		this.btnCancel.setWidthFull();
@@ -158,7 +157,7 @@ public class RemoveDialog extends Dialog
 		this.add(this.verticalLayout);
 		this.setWidth("50%");
 		this.setHeight(null);
-
+		
 		this.btnOK.addClickListener(this::btnOK_onClick);
 		this.btnCancel.addClickListener(this::btnCancel_onClick);
 	} // </generated-code>

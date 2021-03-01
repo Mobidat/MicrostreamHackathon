@@ -1,19 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright 2021 Frank Zillus
-  
-  Licensed under the Apache License, Version 2.0 (the "License"); you may not
-  use this file except in compliance with the License.  You may obtain a copy
-  of the License at
-  
-    http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
-  License for the specific language governing permissions and limitations under
-  the License.
--->
 <!DOCTYPE xml>
 <?xdevuiml version="1.0"?>
 <?template NONE?>
@@ -44,7 +29,7 @@
         </x:typeArguments>
         <x:constraints width="100%" height="-1px" flex-grow="1.0" />
         <x:columns>
-            <column property="name" header="Name" sortable="true" />
+            <column property="name" header="Name" frozen="true" sortable="true" autoWidth="true" flexGrow="0" />
             <column property="profession" header="Profession" sortable="true" />
             <column property="adress1" header="Adress" sortable="true" />
             <column property="adress2" header="Adress 2" sortable="true" />
