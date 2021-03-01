@@ -1,18 +1,19 @@
 /*******************************************************************************
  * Copyright 2021 Frank Zillus
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License.  You may obtain a copy
  * of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
+
 package com.zillus.coronadiary.dal;
 
 import java.util.List;
@@ -29,7 +30,7 @@ import com.zillus.coronadiary.microstream.DB;
 
 public class TreatmentDAO
 {
-	
+
 	/**
 	 * Adds the entity.
 	 *
@@ -44,7 +45,18 @@ public class TreatmentDAO
 			TreatmentDAO.storeTreatment();
 		}
 	}
-	
+
+	/**
+	 * Store entities.
+	 *
+	 * @param entities
+	 *            the entities
+	 */
+	public static void storeEntities(final List<AbstractTreatmentEntity> entities)
+	{
+		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
+	}
+
 	/**
 	 * Removes the entity.
 	 *
@@ -59,7 +71,7 @@ public class TreatmentDAO
 			TreatmentDAO.storeTreatment();
 		}
 	}
-	
+
 	/**
 	 * Find all.
 	 *
@@ -69,7 +81,7 @@ public class TreatmentDAO
 	{
 		return DB.root().getTreatmentEntities();
 	}
-
+	
 	/**
 	 * Checks if is treatment DB.
 	 *
@@ -79,7 +91,7 @@ public class TreatmentDAO
 	{
 		return DB.root().isTreatments();
 	}
-	
+
 	/**
 	 * Find all medical.
 	 *
@@ -90,7 +102,7 @@ public class TreatmentDAO
 		return TreatmentDAO.findAll().stream().filter(MedicationEntity.class::isInstance)
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Find all symptom.
 	 *
@@ -103,7 +115,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Find all testing.
 	 *
@@ -116,7 +128,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Find all vaccination.
 	 *
@@ -129,7 +141,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Store treatment.
 	 */
@@ -137,7 +149,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities());
 	}
-	
+
 	/**
 	 * Gets the sorted treatment.
 	 *
@@ -152,7 +164,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Gets the sorted treatments.
 	 *
