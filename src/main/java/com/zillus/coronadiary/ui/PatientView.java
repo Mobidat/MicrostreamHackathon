@@ -45,15 +45,27 @@ public class PatientView extends VerticalLayout implements HasTitle
 		super();
 		this.initUI();
 		this.refresh();
-
+		
 	}
 
+	/**
+	 * Creates the patient.
+	 */
+	private void createPatient()
+	{
+		new PatientPopup()
+			.setPatientEntity(new PatientEntity())
+			.setSavedCallback(() -> {
+				this.refresh();
+			}).open();
+	}
+	
 	@Override
 	public String getTitle()
 	{
 		return "Patient";
 	}
-
+	
 	/**
 	 * Event handler delegate method for the {@link Button} {@link #addBtn}.
 	 *
@@ -62,12 +74,9 @@ public class PatientView extends VerticalLayout implements HasTitle
 	 */
 	private void addBtn_onClick(final ClickEvent<Button> event)
 	{
-		new PatientPopup()
-			.setSavedCallback(() -> {
-				this.refresh();
-			}).open();
+		this.createPatient();
 	}
-
+	
 	/**
 	 * Refresh.
 	 */
@@ -75,7 +84,7 @@ public class PatientView extends VerticalLayout implements HasTitle
 	{
 		this.gridPatient.setItems(PersonDAO.findAllPatients());
 	}
-
+	
 	/**
 	 * Event handler delegate method for the {@link Button} {@link #cancelBtn}.
 	 *
@@ -95,7 +104,7 @@ public class PatientView extends VerticalLayout implements HasTitle
 		this.addBtn           = new Button();
 		this.cancelBtn        = new Button();
 		this.gridPatient      = new Grid<>(PatientEntity.class, false);
-
+		
 		this.addBtn.setText("Patient");
 		this.addBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.addBtn.setIcon(IronIcons.ADD.create());
@@ -116,7 +125,7 @@ public class PatientView extends VerticalLayout implements HasTitle
 			.setHeader("...")
 			.setSortable(false).setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
 		this.gridPatient.setSelectionMode(Grid.SelectionMode.SINGLE);
-
+		
 		this.addBtn.setWidthFull();
 		this.addBtn.setHeight(null);
 		this.cancelBtn.setWidthFull();
@@ -129,15 +138,15 @@ public class PatientView extends VerticalLayout implements HasTitle
 		this.add(this.horizontalLayout, this.gridPatient);
 		this.setFlexGrow(1.0, this.gridPatient);
 		this.setSizeUndefined();
-
+		
 		this.addBtn.addClickListener(this::addBtn_onClick);
 		this.cancelBtn.addClickListener(this::cancelBtn_onClick);
 	} // </generated-code>
-
+	
 	// <generated-code name="variables">
 	private Button              addBtn, cancelBtn;
 	private HorizontalLayout    horizontalLayout;
 	private Grid<PatientEntity> gridPatient;
 	// </generated-code>
-
+	
 }

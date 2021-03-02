@@ -57,7 +57,7 @@ public class MedicationPopup extends Dialog
 {
 	
 	/** The medication entity. */
-	private final MedicationEntity medicationEntity;
+	private MedicationEntity medicationEntity;
 	
 	/** The on oklistener. */
 	private Runnable onOklistener;
@@ -76,10 +76,22 @@ public class MedicationPopup extends Dialog
 		super();
 		this.initUI();
 		this.initCombos();
-		
-		this.patientEntity    = UI.getCurrent().getSession().getAttribute(PatientEntity.class);
-		this.medicationEntity = new MedicationEntity();
+		this.patientEntity = UI.getCurrent().getSession().getAttribute(PatientEntity.class);
 		this.initBinder();
+	}
+	
+	/**
+	 * Sets the medication entity.
+	 *
+	 * @param medication
+	 *            the medication
+	 * @return the medication popup
+	 */
+	public MedicationPopup setMedicationEntity(final MedicationEntity medication)
+	{
+		this.medicationEntity = medication;
+		this.binder.readBean(this.medicationEntity);
+		return this;
 	}
 	
 	/**
@@ -87,7 +99,6 @@ public class MedicationPopup extends Dialog
 	 */
 	private void initBinder()
 	{
-		this.binder.readBean(this.medicationEntity);
 		this.binder.addStatusChangeListener(event -> {
 			final boolean isValid    = event.getBinder().isValid();
 			final boolean hasChanges = event.getBinder().hasChanges();

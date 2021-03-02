@@ -45,7 +45,7 @@ public class MedicalPopup extends Dialog
 {
 	
 	/** The medical entity. */
-	private final MedicalEntity medicalEntity;
+	private MedicalEntity medicalEntity;
 	
 	/** The on oklistener. */
 	private Runnable onOklistener;
@@ -58,8 +58,21 @@ public class MedicalPopup extends Dialog
 		super();
 		this.initUI();
 		this.initCombos();
-		this.medicalEntity = new MedicalEntity();
 		this.initBinder();
+	}
+
+	/**
+	 * Sets the medical entity.
+	 *
+	 * @param medical
+	 *            the medical
+	 * @return the medical popup
+	 */
+	public MedicalPopup setMedicalEntity(final MedicalEntity medical)
+	{
+		this.medicalEntity = medical;
+		this.binder.readBean(this.medicalEntity);
+		return this;
 	}
 
 	/**
@@ -67,7 +80,6 @@ public class MedicalPopup extends Dialog
 	 */
 	private void initBinder()
 	{
-		this.binder.readBean(this.medicalEntity);
 		this.binder.addStatusChangeListener(event -> {
 			final boolean isValid    = event.getBinder().isValid();
 			final boolean hasChanges = event.getBinder().hasChanges();
@@ -178,7 +190,8 @@ public class MedicalPopup extends Dialog
 		this.btnCancel.setText("Cancel");
 		this.btnCancel.addThemeVariants(ButtonVariant.LUMO_ERROR);
 		this.btnCancel.setIcon(IronIcons.CANCEL.create());
-		this.form.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 1, FormLayout.ResponsiveStep.LabelsPosition.TOP));
+		this.form
+			.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 1, FormLayout.ResponsiveStep.LabelsPosition.TOP));
 		this.lblName.setText("name");
 		this.txtName.setRequired(true);
 		this.txtName.setRequiredIndicatorVisible(true);
@@ -203,7 +216,8 @@ public class MedicalPopup extends Dialog
 			MedicalEntity::setAdress1);
 		this.binder.forField(this.txtAdress2).withNullRepresentation("").bind(MedicalEntity::getAdress2,
 			MedicalEntity::setAdress2);
-		this.binder.forField(this.txtCity).withNullRepresentation("").bind(MedicalEntity::getCity, MedicalEntity::setCity);
+		this.binder.forField(this.txtCity).withNullRepresentation("").bind(MedicalEntity::getCity,
+			MedicalEntity::setCity);
 		this.binder.forField(this.txtCountry).withNullRepresentation("").bind(MedicalEntity::getCountry,
 			MedicalEntity::setCountry);
 		this.binder.forField(this.cmbProfession).bind(MedicalEntity::getProfession, MedicalEntity::setProfession);

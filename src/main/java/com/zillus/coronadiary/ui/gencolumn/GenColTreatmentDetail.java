@@ -29,14 +29,23 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.zillus.coronadiary.dal.TreatmentDAO;
 import com.zillus.coronadiary.domain.AbstractTreatmentEntity;
+import com.zillus.coronadiary.domain.MedicationEntity;
 import com.zillus.coronadiary.domain.PatientEntity;
+import com.zillus.coronadiary.domain.SymptomEntity;
+import com.zillus.coronadiary.domain.TestingEntity;
+import com.zillus.coronadiary.domain.VaccinationEntity;
 import com.zillus.coronadiary.ui.TreatmentView;
+import com.zillus.coronadiary.ui.popup.MedicationPopup;
 import com.zillus.coronadiary.ui.popup.RemoveDialog;
+import com.zillus.coronadiary.ui.popup.SymptomPopup;
+import com.zillus.coronadiary.ui.popup.TestingPopup;
+import com.zillus.coronadiary.ui.popup.VaccinationPopup;
 
 
 public class GenColTreatmentDetail extends HorizontalLayout implements RenderedComponent<AbstractTreatmentEntity>
 {
 
+	/** The treatment. */
 	private AbstractTreatmentEntity treatment;
 
 	/** The patient entity. */
@@ -57,7 +66,53 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 	{
 		this.treatment = value;
 	}
-	
+
+	/**
+	 * Creates the treatment.
+	 */
+	private void editTreatment()
+	{
+		final String name = this.treatment.getClass().getName();
+
+		switch(name)
+		{
+			case "MedicationEntity":
+				new MedicationPopup().setMedicationEntity((MedicationEntity)this.treatment)
+					.setSavedCallback(() -> {
+						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
+						treatmentView.refresh(this.patientEntity);
+					}).open();
+			break;
+
+			case "SymptomEntity":
+				new SymptomPopup().setSymptomEntity((SymptomEntity)this.treatment)
+					.setSavedCallback(() -> {
+						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
+						treatmentView.refresh(this.patientEntity);
+					}).open();
+			break;
+
+			case "TestingEntity":
+				new TestingPopup().setTestingEntity((TestingEntity)this.treatment)
+					.setSavedCallback(() -> {
+						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
+						treatmentView.refresh(this.patientEntity);
+					}).open();
+			break;
+
+			case "vaccinationEntity":
+				new VaccinationPopup().setVaccinationEntity((VaccinationEntity)this.treatment)
+					.setSavedCallback(() -> {
+						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
+						treatmentView.refresh(this.patientEntity);
+					}).open();
+			break;
+
+			default:
+				System.out.println("no match");
+		}
+	}
+
 	/**
 	 * Show remove dialog.
 	 */
@@ -66,7 +121,7 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 		final RemoveDialog dialog = new RemoveDialog()
 			.setText(this.treatment.getName())
 			.setOkListener(() -> {
-				
+
 				final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
 				TreatmentDAO.removeEntity(this.treatment);
 				treatmentView.refresh(this.patientEntity);
@@ -83,7 +138,7 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 	 */
 	private void btnEdit_onClick(final ClickEvent<Button> event)
 	{
-		// TODO
+		this.editTreatment();
 	}
 
 	/**
@@ -103,25 +158,25 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 	{
 		this.btnEdit   = new Button();
 		this.btnDelete = new Button();
-		
+
 		this.setSpacing(false);
 		this.btnEdit.addThemeVariants(ButtonVariant.LUMO_SMALL, ButtonVariant.LUMO_TERTIARY);
 		this.btnEdit.setIcon(IronIcons.SEARCH.create());
 		this.btnDelete.addThemeVariants(ButtonVariant.LUMO_SMALL, ButtonVariant.LUMO_TERTIARY,
 			ButtonVariant.LUMO_ERROR);
 		this.btnDelete.setIcon(VaadinIcon.TRASH.create());
-		
+
 		this.btnEdit.setSizeUndefined();
 		this.btnDelete.setSizeUndefined();
 		this.add(this.btnEdit, this.btnDelete);
 		this.setSizeUndefined();
-		
+
 		this.btnEdit.addClickListener(this::btnEdit_onClick);
 		this.btnDelete.addClickListener(this::btnDelete_onClick);
 	} // </generated-code>
-	
+
 	// <generated-code name="variables">
 	private Button btnEdit, btnDelete;
 	// </generated-code>
-	
+
 }

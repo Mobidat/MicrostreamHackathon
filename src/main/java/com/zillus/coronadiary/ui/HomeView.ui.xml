@@ -25,7 +25,8 @@
         <H2 x:name="h2Patient" text="none">
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
         </H2>
-        <Button x:name="btnPatients" text="Patient TestData">
+        <Button x:name="btnPatients" text="200 Patient Data">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#PLUS" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
         </Button>
@@ -35,7 +36,8 @@
         <H2 x:name="h2Medicals" text="none">
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
         </H2>
-        <Button x:name="btnMedicals" text="Medical TestData">
+        <Button x:name="btnMedicals" text="200 Medical Data">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#PLUS" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
         </Button>
@@ -45,7 +47,8 @@
         <H2 x:name="h2Entries" text="none">
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
         </H2>
-        <Button x:name="btnEntries" text="Diary TestData">
+        <Button x:name="btnEntries" text="6000 Diary Data">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#PLUS" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
         </Button>

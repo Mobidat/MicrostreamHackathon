@@ -54,7 +54,7 @@ public class PatientPopup extends Dialog
 	private Runnable onOklistener;
 	
 	/** The patient entity. */
-	private final PatientEntity patientEntity;
+	private PatientEntity patientEntity;
 	
 	/**
 	 *
@@ -64,9 +64,14 @@ public class PatientPopup extends Dialog
 		super();
 		this.initUI();
 		this.initCombos();
-
-		this.patientEntity = new PatientEntity();
 		this.initBinder();
+	}
+	
+	public PatientPopup setPatientEntity(final PatientEntity patient)
+	{
+		this.patientEntity = patient;
+		this.binder.readBean(this.patientEntity);
+		return this;
 	}
 
 	/**
@@ -74,7 +79,6 @@ public class PatientPopup extends Dialog
 	 */
 	private void initBinder()
 	{
-		this.binder.readBean(this.patientEntity);
 		this.binder.addStatusChangeListener(event -> {
 			final boolean isValid    = event.getBinder().isValid();
 			final boolean hasChanges = event.getBinder().hasChanges();

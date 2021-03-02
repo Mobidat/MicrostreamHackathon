@@ -42,7 +42,11 @@ import com.zillus.coronadiary.HasTitle;
 import com.zillus.coronadiary.dal.PersonDAO;
 import com.zillus.coronadiary.dal.TreatmentDAO;
 import com.zillus.coronadiary.domain.AbstractTreatmentEntity;
+import com.zillus.coronadiary.domain.MedicationEntity;
 import com.zillus.coronadiary.domain.PatientEntity;
+import com.zillus.coronadiary.domain.SymptomEntity;
+import com.zillus.coronadiary.domain.TestingEntity;
+import com.zillus.coronadiary.domain.VaccinationEntity;
 import com.zillus.coronadiary.ui.gencolumn.GenColTreatmentDetail;
 import com.zillus.coronadiary.ui.popup.MedicationPopup;
 import com.zillus.coronadiary.ui.popup.SymptomPopup;
@@ -62,14 +66,79 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 		super();
 		this.initUI();
 		this.initCombos();
+		this.initView();
+	}
+	
+	/**
+	 * Inits the view.
+	 */
+	private void initView()
+	{
 		this.patientEntity = UI.getCurrent().getSession().getAttribute(PatientEntity.class);
+		
 		if(this.patientEntity != null)
 		{
 			this.refresh(this.patientEntity);
 		}
-
+		else
+		{
+			this.resetDialog();
+		}
+	}
+	
+	/**
+	 * Creates the symptom.
+	 */
+	private void createSymptom()
+	{
+		new SymptomPopup()
+			.setSymptomEntity(new SymptomEntity())
+			.setSavedCallback(() -> {
+				this.refresh(this.patientEntity);
+			}).open();
+	}
+	
+	/**
+	 * Creates the testing.
+	 */
+	private void createTesting()
+	{
+		new TestingPopup()
+			.setTestingEntity(new TestingEntity())
+			.setSavedCallback(() -> {
+				this.refresh(this.patientEntity);
+			}).open();
+	}
+	
+	/**
+	 * Creates the medication.
+	 */
+	private void createMedication()
+	{
+		new MedicationPopup()
+			.setMedicationEntity(new MedicationEntity())
+			.setSavedCallback(() -> {
+				this.refresh(this.patientEntity);
+			}).open();
+	}
+	
+	/**
+	 * Creates the vaccination.
+	 */
+	private void createVaccination()
+	{
+		new VaccinationPopup()
+			.setVaccinationEntity(new VaccinationEntity())
+			.setSavedCallback(() -> {
+				this.refresh(this.patientEntity);
+			}).open();
 	}
 
+	/**
+	 * Gets the title.
+	 *
+	 * @return the title
+	 */
 	@Override
 	public String getTitle()
 	{
@@ -82,6 +151,15 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	}
 
 	/**
+	 * Reset dialog.
+	 */
+	private void resetDialog()
+	{
+		this.cmbPatient.clear();
+		this.gridTreatment.getDataProvider().refreshAll();
+	}
+
+	/**
 	 * Refresh.
 	 *
 	 * @param patientEntity
@@ -90,6 +168,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	public void refresh(final PatientEntity patientEntity)
 	{
 		this.gridTreatment.setItems(TreatmentDAO.getPatientTreatments(patientEntity.getViewId()));
+		this.cmbPatient.setValue(patientEntity);
 	}
 
 	/**
@@ -100,9 +179,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	 */
 	private void addSymptomBtn_onClick(final ClickEvent<Button> event)
 	{
-		new SymptomPopup().setSavedCallback(() -> {
-			this.refresh(this.patientEntity);
-		}).open();
+		this.createSymptom();
 	}
 
 	/**
@@ -113,9 +190,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	 */
 	private void addTestingBtn_onClick(final ClickEvent<Button> event)
 	{
-		new TestingPopup().setSavedCallback(() -> {
-			this.refresh(this.patientEntity);
-		}).open();
+		this.createTesting();
 	}
 
 	/**
@@ -126,9 +201,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	 */
 	private void addMedicationBtn_onClick(final ClickEvent<Button> event)
 	{
-		new MedicationPopup().setSavedCallback(() -> {
-			this.refresh(this.patientEntity);
-		}).open();
+		this.createMedication();
 	}
 
 	/**
@@ -139,9 +212,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 	 */
 	private void addVaccinationBtn_onClick(final ClickEvent<Button> event)
 	{
-		new VaccinationPopup().setSavedCallback(() -> {
-			this.refresh(this.patientEntity);
-		}).open();
+		this.createVaccination();
 	}
 
 	/**
@@ -211,7 +282,7 @@ public class TreatmentView extends VerticalLayout implements HasTitle
 			.addColumn(new LocalDateRenderer<>(AbstractTreatmentEntity::getDate,
 				DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG), "No date"))
 			.setKey("date").setHeader("Date").setFrozen(true).setSortable(true).setAutoWidth(true).setFlexGrow(0)
-			.setTextAlign(ColumnTextAlign.CENTER);
+			.setTextAlign(ColumnTextAlign.END);
 		this.gridTreatment.addColumn(AbstractTreatmentEntity::getName).setKey("name").setHeader("Name")
 			.setSortable(true);
 		this.gridTreatment.addColumn(RenderedComponent.Renderer(GenColTreatmentDetail::new)).setKey("renderer")
