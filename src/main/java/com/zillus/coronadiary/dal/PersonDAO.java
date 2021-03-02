@@ -31,7 +31,7 @@ import com.zillus.coronadiary.microstream.DB;
  */
 public class PersonDAO
 {
-	
+
 	/**
 	 * Find all.
 	 *
@@ -41,7 +41,7 @@ public class PersonDAO
 	{
 		return DB.root().getPersonEntities();
 	}
-	
+
 	/**
 	 * Adds the entity.
 	 *
@@ -56,7 +56,7 @@ public class PersonDAO
 			PersonDAO.storePerson();
 		}
 	}
-
+	
 	/**
 	 * Removes the entity.
 	 *
@@ -71,7 +71,7 @@ public class PersonDAO
 			PersonDAO.storePerson();
 		}
 	}
-	
+
 	/**
 	 * Find person.
 	 *
@@ -83,7 +83,7 @@ public class PersonDAO
 	{
 		return PersonDAO.findAll().stream().filter(p -> p.getViewId().equals(personId)).findFirst().get();
 	}
-	
+
 	/**
 	 * Find all medicals.
 	 *
@@ -97,7 +97,18 @@ public class PersonDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-	
+
+	/**
+	 * Count all medicals.
+	 *
+	 * @return the int
+	 */
+	public static int countAllMedicals()
+	{
+		return PersonDAO.findAllMedicals().size();
+
+	}
+
 	/**
 	 * Find all patients.
 	 *
@@ -113,13 +124,24 @@ public class PersonDAO
 	}
 
 	/**
+	 * Count all patients.
+	 *
+	 * @return the int
+	 */
+	public static int countAllPatients()
+	{
+		return PersonDAO.findAllPatients().size();
+
+	}
+	
+	/**
 	 * Store person.
 	 */
 	private static void storePerson()
 	{
 		DB.storageManager().store(DB.root().getPersonEntities());
 	}
-
+	
 	/**
 	 * Store entities.
 	 *
@@ -129,9 +151,9 @@ public class PersonDAO
 	public static void storeMedicals(final List<MedicalEntity> entities)
 	{
 		DB.storageManager().store(DB.root().getPersonEntities().addAll(entities));
-		
+
 	}
-	
+
 	/**
 	 * Store entities.
 	 *
@@ -141,7 +163,7 @@ public class PersonDAO
 	public static void storePatients(final List<PatientEntity> entities)
 	{
 		DB.storageManager().store(DB.root().getPersonEntities().addAll(entities));
-		
-	}
 
+	}
+	
 }

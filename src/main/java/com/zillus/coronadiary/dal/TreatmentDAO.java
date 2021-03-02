@@ -81,6 +81,16 @@ public class TreatmentDAO
 	{
 		return DB.root().getTreatmentEntities();
 	}
+	
+	/**
+	 * Count all treatments.
+	 *
+	 * @return the int
+	 */
+	public static int countAllTreatments()
+	{
+		return TreatmentDAO.findAll().size();
+	}
 
 	/**
 	 * Find all medical.
@@ -165,5 +175,49 @@ public class TreatmentDAO
 		return TreatmentDAO.findAll().stream()
 			.sorted()
 			.collect(Collectors.toList());
+	}
+	
+	/**
+	 * Store entities.
+	 *
+	 * @param entities
+	 *            the entities
+	 */
+	public static void storeSymptoms(final List<SymptomEntity> entities)
+	{
+		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
+	}
+	
+	/**
+	 * Store medications.
+	 *
+	 * @param entities
+	 *            the entities
+	 */
+	public static void storeMedications(final List<MedicationEntity> entities)
+	{
+		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
+	}
+	
+	/**
+	 * Store testings.
+	 *
+	 * @param entities
+	 *            the entities
+	 */
+	public static void storeTestings(final List<TestingEntity> entities)
+	{
+		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
+	}
+	
+	/**
+	 * Store vaccinations.
+	 *
+	 * @param entities
+	 *            the entities
+	 */
+	public static void storeVaccinations(final List<VaccinationEntity> entities)
+	{
+		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
 	}
 }

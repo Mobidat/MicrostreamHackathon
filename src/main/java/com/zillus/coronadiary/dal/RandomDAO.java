@@ -35,6 +35,9 @@ import com.zillus.coronadiary.domain.enums.Vaccine;
 public class RandomDAO
 {
 	
+	/** The Constant RND. */
+	private static final Random RND = ThreadLocalRandom.current();
+	
 	/** The faker. */
 	private static final Faker FAKER = Faker.instance();
 	
@@ -44,9 +47,11 @@ public class RandomDAO
 	 * @param numVaccination
 	 *            the num vaccination
 	 * @param patienId
+	 * @param medicals
 	 * @return the list
 	 */
-	public static List<VaccinationEntity> createVaccinations(final int numVaccination, final String patienId)
+	public static List<VaccinationEntity>
+		createVaccinations(final int numVaccination, final String patienId, final List<MedicalEntity> medicals)
 	{
 		final List<VaccinationEntity> vaccinations = new ArrayList<>();
 		
@@ -58,7 +63,10 @@ public class RandomDAO
 		
 		for(int i = 0; i < numVaccination; i++)
 		{
-			vaccinations.add(new VaccinationEntity(patienId, null,
+			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
+			final String        medicalId     = randomMedical.getViewId();
+
+			vaccinations.add(new VaccinationEntity(patienId, medicalId,
 				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
 				medical.medicineName(), Boolean.valueOf(bool.bool()),
 				randomEnum.random()));
@@ -72,9 +80,11 @@ public class RandomDAO
 	 * @param numTesting
 	 *            the num testing
 	 * @param patienId
+	 * @param medicals
 	 * @return the list
 	 */
-	public static List<TestingEntity> createTestings(final int numTesting, final String patienId)
+	public static List<TestingEntity>
+		createTestings(final int numTesting, final String patienId, final List<MedicalEntity> medicals)
 	{
 		final List<TestingEntity> testings = new ArrayList<>();
 		
@@ -86,7 +96,10 @@ public class RandomDAO
 		
 		for(int i = 0; i < numTesting; i++)
 		{
-			testings.add(new TestingEntity(patienId, null,
+			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
+			final String        medicalId        = randomMedical.getViewId();
+
+			testings.add(new TestingEntity(patienId, medicalId,
 				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
 				medical.hospitalName(), Boolean.valueOf(bool.bool()),
 				randomEnum.random()));
@@ -127,9 +140,11 @@ public class RandomDAO
 	 * @param numMedication
 	 *            the num medication
 	 * @param patienId
+	 * @param medicals
 	 * @return the list
 	 */
-	public static List<MedicationEntity> createMedications(final int numMedication, final String patienId)
+	public static List<MedicationEntity>
+		createMedications(final int numMedication, final String patienId, final List<MedicalEntity> medicals)
 	{
 		final List<MedicationEntity> medications = new ArrayList<>();
 		
@@ -140,7 +155,10 @@ public class RandomDAO
 		
 		for(int i = 0; i < numMedication; i++)
 		{
-			medications.add(new MedicationEntity(patienId, null,
+			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
+			final String        medicalId     = randomMedical.getViewId();
+			
+			medications.add(new MedicationEntity(patienId, medicalId,
 				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
 				medical.medicineName(), Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
 		}
@@ -196,6 +214,21 @@ public class RandomDAO
 		}
 		return patients;
 	}
+
+	/**
+	 * Any medical.
+	 *
+	 * @param medicals
+	 *            the medicals
+	 * @return the medical entity
+	 */
+	private static MedicalEntity randomMedical(final List<MedicalEntity> medicals)
+	{
+		final int           index   = RandomDAO.RND.nextInt(medicals.size());
+		final MedicalEntity medical = medicals.get(index);
+		
+		return medical;
+	}
 	
 	/**
 	 * The Class RandomEnum.
@@ -205,9 +238,6 @@ public class RandomDAO
 	 */
 	private static class RandomEnum<E extends Enum<E>>
 	{
-		
-		/** The Constant RND. */
-		private static final Random RND = ThreadLocalRandom.current();
 		
 		/** The values. */
 		private final E[] values;
@@ -230,7 +260,7 @@ public class RandomDAO
 		 */
 		public E random()
 		{
-			return this.values[RandomEnum.RND.nextInt(this.values.length)];
+			return this.values[RandomDAO.RND.nextInt(this.values.length)];
 		}
 	}
 }
