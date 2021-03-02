@@ -25,7 +25,7 @@
         <x:constraints zpos="0" width="-1px" height="-1px" />
         <HorizontalLayout x:name="horizontalLayoutBtnBar">
             <x:constraints width="100%" height="0px" flex-grow="0.0" />
-            <Button x:themeVariants="LUMO_SUCCESS" x:name="btnSave" text="Save">
+            <Button enabled="false" x:themeVariants="LUMO_SUCCESS" x:name="btnSave" text="Save">
                 <x:icon src="com.flowingcode.vaadin.addons.ironicons.IronIcons#SAVE" />
                 <x:constraints width="100%" height="0px" flex-grow="0.0" />
                 <x:event>click.onComponentEvent</x:event>
@@ -46,7 +46,7 @@
                 <Label x:name="lblDate" text="Vaccination Date">
                     <x:constraints width="0px" label="true" height="0px" />
                 </Label>
-                <DatePicker required="true" x:name="dateDate" requiredIndicatorVisible="true" placeholder="Date">
+                <DatePicker required="true" x:name="dateDate" requiredIndicatorVisible="true">
                     <x:typeArguments>
                         <typeArgument type="LocalDate" />
                     </x:typeArguments>
@@ -94,10 +94,10 @@
                     <typeArgument type="VaccinationEntity" />
                 </x:typeArguments>
                 <x:bindings>
-                    <binding field="dateDate" property="date" required="false" readOnly="false">
+                    <binding field="dateDate" property="date" required="true" readOnly="false">
                         <validator type="Bean" />
                     </binding>
-                    <binding field="txtName" property="name" required="true" nullRepresentation="" readOnly="false">
+                    <binding field="txtName" property="name" required="false" nullRepresentation="" readOnly="false">
                         <validator type="Bean" />
                     </binding>
                     <binding field="chkBooster" property="booster" required="false" nullRepresentation="false" readOnly="false">

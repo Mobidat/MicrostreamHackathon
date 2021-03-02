@@ -23,7 +23,7 @@
             <x:event>click.onComponentEvent</x:event>
         </Button>
     </HorizontalLayout>
-    <Grid x:name="gridPatient">
+    <Grid x:themeVariants="LUMO_ROW_STRIPES LUMO_COMPACT" x:name="gridPatient">
         <x:typeArguments>
             <typeArgument type="PatientEntity" />
         </x:typeArguments>

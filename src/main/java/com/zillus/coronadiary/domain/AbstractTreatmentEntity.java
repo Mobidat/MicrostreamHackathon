@@ -26,22 +26,22 @@ import java.util.UUID;
  */
 public abstract class AbstractTreatmentEntity implements Comparable<AbstractTreatmentEntity>
 {
-
+	
 	/** The view id. */
 	protected final String viewId;
-
+	
 	/** The patient id. */
 	private String patientId;
-	
+
 	/** The medical id. */
 	private String medicalId;
-
+	
 	/** The date. */
 	private LocalDate date;
-
+	
 	/** The name. */
 	private String name;
-
+	
 	/**
 	 * Instantiates a new abstract treatment entity.
 	 *
@@ -66,9 +66,9 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 		this.medicalId = medicalId;
 		this.date      = date;
 		this.name      = name;
-		
-	}
 
+	}
+	
 	/**
 	 * Instantiates a new abstract treatment entity.
 	 */
@@ -76,8 +76,9 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		super();
 		this.viewId = UUID.randomUUID().toString();
+		this.date   = LocalDate.now();
 	}
-
+	
 	/**
 	 * Gets the date.
 	 *
@@ -87,7 +88,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.date;
 	}
-	
+
 	/**
 	 * Sets the date.
 	 *
@@ -98,7 +99,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.date = date;
 	}
-	
+
 	/**
 	 * Gets the name.
 	 *
@@ -108,7 +109,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.name;
 	}
-	
+
 	/**
 	 * Sets the name.
 	 *
@@ -119,7 +120,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.name = name;
 	}
-
+	
 	/**
 	 * To string.
 	 *
@@ -131,7 +132,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 		return "AbstractTreatmentEntity [viewId=" + this.viewId + ", patientId=" + this.patientId + ", medicalId="
 			+ this.medicalId + ", date=" + this.date + ", name=" + this.name + "]";
 	}
-
+	
 	/**
 	 * Compare to.
 	 *
@@ -144,7 +145,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.date.compareTo(otherObject.date);
 	}
-	
+
 	/**
 	 * Gets the patient id.
 	 *
@@ -154,7 +155,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.patientId;
 	}
-	
+
 	/**
 	 * Sets the patient id.
 	 *
@@ -165,7 +166,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.patientId = patientId;
 	}
-
+	
 	/**
 	 * Gets the medical id.
 	 *
@@ -175,7 +176,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.medicalId;
 	}
-
+	
 	/**
 	 * Sets the medical id.
 	 *
@@ -186,7 +187,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		this.medicalId = medicalId;
 	}
-
+	
 	/**
 	 * Gets the view id.
 	 *
@@ -196,7 +197,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return this.viewId;
 	}
-	
+
 	/**
 	 * Hash code.
 	 *
@@ -212,7 +213,7 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 	{
 		return Objects.hash(this.viewId);
 	}
-	
+
 	/**
 	 * Equals.
 	 *
@@ -243,5 +244,5 @@ public abstract class AbstractTreatmentEntity implements Comparable<AbstractTrea
 		final AbstractTreatmentEntity other = (AbstractTreatmentEntity)obj;
 		return Objects.equals(this.viewId, other.viewId);
 	}
-	
+
 }

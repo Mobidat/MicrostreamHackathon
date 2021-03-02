@@ -24,6 +24,7 @@ import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -44,6 +45,9 @@ public class HomeView extends VerticalLayout implements HasTitle
 	{
 		super();
 		this.initUI();
+		PersonDAO.findAll();
+		TreatmentDAO.findAll();
+
 		this.initData();
 	}
 	
@@ -144,7 +148,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 	private void initUI()
 	{
 		this.headLine          = new H1();
-		this.h22               = new H2();
+		this.copyright         = new H4();
 		this.horizontalLayout2 = new HorizontalLayout();
 		this.h2Patient         = new H2();
 		this.btnPatients       = new Button();
@@ -159,7 +163,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 		this.headLine.setText("Corona Diary");
 		this.headLine.getStyle().set("font-family", "times");
 		this.headLine.getStyle().set("color", "Orange");
-		this.h22.setText("by Frank Zillus 2021");
+		this.copyright.setText("by Frank Zillus 2021");
 		this.h2Patient.setText("none");
 		this.btnPatients.setText("200 Patient Data");
 		this.btnPatients.setIcon(VaadinIcon.PLUS.create());
@@ -192,14 +196,14 @@ public class HomeView extends VerticalLayout implements HasTitle
 		this.horizontalLayout.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.h2Entries);
 		this.horizontalLayout.setVerticalComponentAlignment(FlexComponent.Alignment.CENTER, this.btnEntries);
 		this.headLine.setSizeUndefined();
-		this.h22.setSizeUndefined();
+		this.copyright.setSizeUndefined();
 		this.horizontalLayout2.setWidthFull();
 		this.horizontalLayout2.setHeight(null);
 		this.horizontalLayout3.setWidthFull();
 		this.horizontalLayout3.setHeight(null);
 		this.horizontalLayout.setWidthFull();
 		this.horizontalLayout.setHeight(null);
-		this.add(this.headLine, this.h22, this.horizontalLayout2, this.horizontalLayout3, this.horizontalLayout);
+		this.add(this.headLine, this.copyright, this.horizontalLayout2, this.horizontalLayout3, this.horizontalLayout);
 		this.setHorizontalComponentAlignment(FlexComponent.Alignment.CENTER, this.headLine);
 		this.setSizeUndefined();
 
@@ -209,10 +213,11 @@ public class HomeView extends VerticalLayout implements HasTitle
 	} // </generated-code>
 	
 	// <generated-code name="variables">
-	private Button           btnEntries, btnPatients, btnMedicals;
+	private Button           btnPatients, btnMedicals, btnEntries;
 	private H1               headLine;
-	private HorizontalLayout horizontalLayout, horizontalLayout2, horizontalLayout3;
-	private H2               h22, h2Entries, h2Patient, h2Medicals;
+	private HorizontalLayout horizontalLayout2, horizontalLayout3, horizontalLayout;
+	private H2               h2Patient, h2Medicals, h2Entries;
+	private H4               copyright;
 	// </generated-code>
 	
 }

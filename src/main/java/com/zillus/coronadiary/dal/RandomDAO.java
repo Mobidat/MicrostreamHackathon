@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2021 Frank Zillus
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.  You may obtain a copy
+ * of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
 
 package com.zillus.coronadiary.dal;
 
@@ -34,13 +49,13 @@ import com.zillus.coronadiary.domain.enums.Vaccine;
  */
 public class RandomDAO
 {
-	
+
 	/** The Constant RND. */
 	private static final Random RND = ThreadLocalRandom.current();
-	
+
 	/** The faker. */
 	private static final Faker FAKER = Faker.instance();
-	
+
 	/**
 	 * Creates the vaccinations.
 	 *
@@ -54,18 +69,18 @@ public class RandomDAO
 		createVaccinations(final int numVaccination, final String patienId, final List<MedicalEntity> medicals)
 	{
 		final List<VaccinationEntity> vaccinations = new ArrayList<>();
-		
+
 		final DateAndTime date    = RandomDAO.FAKER.date();
 		final Medical     medical = RandomDAO.FAKER.medical();
-		
+
 		final Bool                bool       = RandomDAO.FAKER.bool();
 		final RandomEnum<Vaccine> randomEnum = new RandomEnum<>(Vaccine.class);
-		
+
 		for(int i = 0; i < numVaccination; i++)
 		{
 			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
 			final String        medicalId     = randomMedical.getViewId();
-
+			
 			vaccinations.add(new VaccinationEntity(patienId, medicalId,
 				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
 				medical.medicineName(), Boolean.valueOf(bool.bool()),
@@ -73,7 +88,7 @@ public class RandomDAO
 		}
 		return vaccinations;
 	}
-	
+
 	/**
 	 * Creates the testings.
 	 *
@@ -87,18 +102,18 @@ public class RandomDAO
 		createTestings(final int numTesting, final String patienId, final List<MedicalEntity> medicals)
 	{
 		final List<TestingEntity> testings = new ArrayList<>();
-		
+
 		final DateAndTime date    = RandomDAO.FAKER.date();
 		final Medical     medical = RandomDAO.FAKER.medical();
-		
+
 		final Bool                      bool       = RandomDAO.FAKER.bool();
 		final RandomEnum<Testprocedure> randomEnum = new RandomEnum<>(Testprocedure.class);
-		
+
 		for(int i = 0; i < numTesting; i++)
 		{
 			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
-			final String        medicalId        = randomMedical.getViewId();
-
+			final String        medicalId     = randomMedical.getViewId();
+			
 			testings.add(new TestingEntity(patienId, medicalId,
 				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
 				medical.hospitalName(), Boolean.valueOf(bool.bool()),
@@ -106,7 +121,7 @@ public class RandomDAO
 		}
 		return testings;
 	}
-	
+
 	/**
 	 * Creates the symptoms.
 	 *
@@ -118,12 +133,12 @@ public class RandomDAO
 	public static List<SymptomEntity> createSymptoms(final int numSymptom, final String patienId)
 	{
 		final List<SymptomEntity> symptoms = new ArrayList<>();
-		
+
 		final DateAndTime          date       = RandomDAO.FAKER.date();
 		final Medical              medical    = RandomDAO.FAKER.medical();
 		final Number               number     = RandomDAO.FAKER.number();
 		final RandomEnum<Symptoms> randomEnum = new RandomEnum<>(Symptoms.class);
-		
+
 		for(int i = 0; i < numSymptom; i++)
 		{
 			symptoms.add(new SymptomEntity(patienId, null,
@@ -133,7 +148,7 @@ public class RandomDAO
 		}
 		return symptoms;
 	}
-	
+
 	/**
 	 * Creates the medications.
 	 *
@@ -147,24 +162,24 @@ public class RandomDAO
 		createMedications(final int numMedication, final String patienId, final List<MedicalEntity> medicals)
 	{
 		final List<MedicationEntity> medications = new ArrayList<>();
-		
+
 		final DateAndTime            date       = RandomDAO.FAKER.date();
 		final Medical                medical    = RandomDAO.FAKER.medical();
 		final Number                 number     = RandomDAO.FAKER.number();
 		final RandomEnum<Medication> randomEnum = new RandomEnum<>(Medication.class);
-		
+
 		for(int i = 0; i < numMedication; i++)
 		{
 			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
 			final String        medicalId     = randomMedical.getViewId();
-			
+
 			medications.add(new MedicationEntity(patienId, medicalId,
 				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
 				medical.medicineName(), Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
 		}
 		return medications;
 	}
-	
+
 	/**
 	 * Creates the medicals.
 	 *
@@ -174,12 +189,12 @@ public class RandomDAO
 	 */
 	public static List<MedicalEntity> createMedicals(final int numMedicals)
 	{
-		
+
 		final List<MedicalEntity> medicals = new ArrayList<>();
-		
+
 		final Address                add        = RandomDAO.FAKER.address();
 		final RandomEnum<Profession> randomEnum = new RandomEnum<>(Profession.class);
-		
+
 		for(int i = 0; i < numMedicals; i++)
 		{
 			medicals.add(new MedicalEntity(add.lastName(), add.streetAddress(), add.secondaryAddress(), add.city(),
@@ -187,7 +202,7 @@ public class RandomDAO
 		}
 		return medicals;
 	}
-	
+
 	/**
 	 * Creates the patients.
 	 *
@@ -200,21 +215,21 @@ public class RandomDAO
 	{
 		/** The patients. */
 		final List<PatientEntity> patients = new ArrayList<>();
-		
+
 		final Address            add        = RandomDAO.FAKER.address();
 		final DateAndTime        date       = RandomDAO.FAKER.date();
 		final RandomEnum<Gender> randomEnum = new RandomEnum<>(Gender.class);
-		
+
 		for(int i = 0; i < numPatients; i++)
 		{
-			
+
 			patients.add(new PatientEntity(add.lastName(), add.streetAddress(), add.secondaryAddress(), add.city(),
 				add.zipCode(), add.country(),
 				LocalDate.ofInstant(date.birthday(20, 70).toInstant(), ZoneId.systemDefault()), randomEnum.random()));
 		}
 		return patients;
 	}
-
+	
 	/**
 	 * Any medical.
 	 *
@@ -226,10 +241,10 @@ public class RandomDAO
 	{
 		final int           index   = RandomDAO.RND.nextInt(medicals.size());
 		final MedicalEntity medical = medicals.get(index);
-		
+
 		return medical;
 	}
-	
+
 	/**
 	 * The Class RandomEnum.
 	 *
@@ -238,10 +253,10 @@ public class RandomDAO
 	 */
 	private static class RandomEnum<E extends Enum<E>>
 	{
-		
+
 		/** The values. */
 		private final E[] values;
-		
+
 		/**
 		 * Instantiates a new random enum.
 		 *
@@ -252,7 +267,7 @@ public class RandomDAO
 		{
 			this.values = token.getEnumConstants();
 		}
-		
+
 		/**
 		 * Random.
 		 *

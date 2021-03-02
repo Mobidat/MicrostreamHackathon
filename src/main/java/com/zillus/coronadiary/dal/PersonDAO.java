@@ -31,7 +31,7 @@ import com.zillus.coronadiary.microstream.DB;
  */
 public class PersonDAO
 {
-
+	
 	/**
 	 * Find all.
 	 *
@@ -41,7 +41,7 @@ public class PersonDAO
 	{
 		return DB.root().getPersonEntities();
 	}
-
+	
 	/**
 	 * Adds the entity.
 	 *
@@ -65,13 +65,25 @@ public class PersonDAO
 	 */
 	public static void removeEntity(final AbstractPersonEntity entity)
 	{
-		if(entity != null || !DB.root().getPersonEntities().contains(entity))
+		if(PersonDAO.isSaved(entity))
 		{
 			PersonDAO.findAll().remove(entity);
 			PersonDAO.storePerson();
 		}
 	}
 
+	/**
+	 * Checks if is saved.
+	 *
+	 * @param entity
+	 *            the entity
+	 * @return true, if is saved
+	 */
+	public static boolean isSaved(final AbstractPersonEntity entity)
+	{
+		return entity != null || !DB.root().getPersonEntities().contains(entity);
+	}
+	
 	/**
 	 * Find person.
 	 *
@@ -83,7 +95,7 @@ public class PersonDAO
 	{
 		return PersonDAO.findAll().stream().filter(p -> p.getViewId().equals(personId)).findFirst().get();
 	}
-
+	
 	/**
 	 * Find all medicals.
 	 *
@@ -97,7 +109,7 @@ public class PersonDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Count all medicals.
 	 *
@@ -106,9 +118,8 @@ public class PersonDAO
 	public static int countAllMedicals()
 	{
 		return PersonDAO.findAllMedicals().size();
-
 	}
-
+	
 	/**
 	 * Find all patients.
 	 *
@@ -122,7 +133,7 @@ public class PersonDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Count all patients.
 	 *
@@ -131,7 +142,6 @@ public class PersonDAO
 	public static int countAllPatients()
 	{
 		return PersonDAO.findAllPatients().size();
-
 	}
 	
 	/**
@@ -151,9 +161,9 @@ public class PersonDAO
 	public static void storeMedicals(final List<MedicalEntity> entities)
 	{
 		DB.storageManager().store(DB.root().getPersonEntities().addAll(entities));
-
+		
 	}
-
+	
 	/**
 	 * Store entities.
 	 *
@@ -163,7 +173,6 @@ public class PersonDAO
 	public static void storePatients(final List<PatientEntity> entities)
 	{
 		DB.storageManager().store(DB.root().getPersonEntities().addAll(entities));
-
 	}
 	
 }

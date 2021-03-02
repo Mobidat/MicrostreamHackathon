@@ -72,12 +72,15 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 	 */
 	private void editTreatment()
 	{
-		final String name = this.treatment.getClass().getName();
+		final String name = this.treatment.getClass().getSimpleName();
 
 		switch(name)
 		{
 			case "MedicationEntity":
-				new MedicationPopup().setMedicationEntity((MedicationEntity)this.treatment)
+				final MedicationEntity medicatinEntity = (MedicationEntity)this.treatment;
+				new MedicationPopup()
+					.setMedicationEntity(medicatinEntity)
+					.setCMBMedical(medicatinEntity)
 					.setSavedCallback(() -> {
 						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
 						treatmentView.refresh(this.patientEntity);
@@ -85,7 +88,8 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 			break;
 
 			case "SymptomEntity":
-				new SymptomPopup().setSymptomEntity((SymptomEntity)this.treatment)
+				new SymptomPopup()
+					.setSymptomEntity((SymptomEntity)this.treatment)
 					.setSavedCallback(() -> {
 						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
 						treatmentView.refresh(this.patientEntity);
@@ -93,7 +97,10 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 			break;
 
 			case "TestingEntity":
-				new TestingPopup().setTestingEntity((TestingEntity)this.treatment)
+				final TestingEntity testEntity = (TestingEntity)this.treatment;
+				new TestingPopup()
+					.setTestingEntity(testEntity)
+					.setCMBMedical(testEntity)
 					.setSavedCallback(() -> {
 						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
 						treatmentView.refresh(this.patientEntity);
@@ -101,7 +108,11 @@ public class GenColTreatmentDetail extends HorizontalLayout implements RenderedC
 			break;
 
 			case "vaccinationEntity":
-				new VaccinationPopup().setVaccinationEntity((VaccinationEntity)this.treatment)
+
+				final VaccinationEntity vaccEntity = (VaccinationEntity)this.treatment;
+				new VaccinationPopup()
+					.setVaccinationEntity(vaccEntity)
+					.setCMBMedical(vaccEntity)
 					.setSavedCallback(() -> {
 						final TreatmentView treatmentView = UIUtils.getNextParent(this, TreatmentView.class);
 						treatmentView.refresh(this.patientEntity);

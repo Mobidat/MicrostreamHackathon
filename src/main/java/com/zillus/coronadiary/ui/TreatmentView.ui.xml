@@ -48,14 +48,14 @@
             <x:event>click.onComponentEvent</x:event>
         </Button>
     </HorizontalLayout>
-    <Grid pageSize="60" x:name="gridTreatment">
+    <Grid pageSize="60" x:themeVariants="LUMO_ROW_STRIPES LUMO_COMPACT" x:name="gridTreatment">
         <x:typeArguments>
             <typeArgument type="AbstractTreatmentEntity" />
         </x:typeArguments>
         <x:constraints width="100%" height="-1px" flex-grow="1.0" />
         <x:columns>
             <column property="date" header="Date" frozen="true" sortable="true" autoWidth="true" flexGrow="0" textAlign="END">
-                <renderer type="LocalDateRenderer" nullRepresentation="No date">
+                <renderer nullRepresentation="No date" type="LocalDateRenderer">
                     <dateTimeFormatter zone="default" format="LocalizedDate" dateFormatStyle="LONG" locale="default" />
                 </renderer>
             </column>
