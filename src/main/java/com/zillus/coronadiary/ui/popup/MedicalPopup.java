@@ -169,6 +169,9 @@ public class MedicalPopup extends Dialog
 		this.formItem               = new FormItem();
 		this.lblName                = new Label();
 		this.txtName                = new TextField();
+		this.formItem7              = new FormItem();
+		this.lblProfession          = new Label();
+		this.cmbProfession          = new ComboBox<>();
 		this.formItem2              = new FormItem();
 		this.lblAdress1             = new Label();
 		this.txtAdress1             = new TextField();
@@ -184,11 +187,8 @@ public class MedicalPopup extends Dialog
 		this.formItem6              = new FormItem();
 		this.lblCountry             = new Label();
 		this.txtCountry             = new TextField();
-		this.formItem7              = new FormItem();
-		this.lblProfession          = new Label();
-		this.cmbProfession          = new ComboBox<>();
 		this.binder                 = new Binder<>();
-
+		
 		this.verticalLayout.setPadding(false);
 		this.btnSave.setText("Save");
 		this.btnSave.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
@@ -196,15 +196,17 @@ public class MedicalPopup extends Dialog
 		this.btnCancel.setText("Cancel");
 		this.btnCancel.addThemeVariants(ButtonVariant.LUMO_ERROR);
 		this.btnCancel.setIcon(IronIcons.CANCEL.create());
-		this.form
-			.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 1, FormLayout.ResponsiveStep.LabelsPosition.TOP));
-		this.lblName.setText("name");
+		this.form.setResponsiveSteps(new FormLayout.ResponsiveStep("0px", 1, FormLayout.ResponsiveStep.LabelsPosition.TOP));
+		this.lblName.setText("Medical Name");
 		this.txtName.setRequired(true);
 		this.txtName.setRequiredIndicatorVisible(true);
 		this.txtName.setClearButtonVisible(true);
-		this.lblAdress1.setText("Adress");
+		this.lblProfession.setText("Salutation");
+		this.cmbProfession.setClearButtonVisible(true);
+		this.cmbProfession.setItemLabelGenerator(ItemLabelGeneratorFactory.NonNull(CaptionUtils::resolveCaption));
+		this.lblAdress1.setText("Address");
 		this.txtAdress1.setClearButtonVisible(true);
-		this.lblAdress2.setText("Adress 2");
+		this.lblAdress2.setText("Address 2");
 		this.txtAdress2.setClearButtonVisible(true);
 		this.lblCity.setText("City");
 		this.txtCity.setClearButtonVisible(true);
@@ -212,24 +214,19 @@ public class MedicalPopup extends Dialog
 		this.txtZipCode.setClearButtonVisible(true);
 		this.lblCountry.setText("Country");
 		this.txtCountry.setClearButtonVisible(true);
-		this.lblProfession.setText("profession");
-		this.cmbProfession.setClearButtonVisible(true);
-		this.cmbProfession.setItemLabelGenerator(ItemLabelGeneratorFactory.NonNull(CaptionUtils::resolveCaption));
-
+		
 		this.binder.forField(this.txtName).asRequired().withNullRepresentation("").bind(MedicalEntity::getName,
 			MedicalEntity::setName);
-		this.binder.forField(this.txtAdress1).withNullRepresentation("").bind(MedicalEntity::getAdress1,
-			MedicalEntity::setAdress1);
-		this.binder.forField(this.txtAdress2).withNullRepresentation("").bind(MedicalEntity::getAdress2,
-			MedicalEntity::setAdress2);
-		this.binder.forField(this.txtCity).withNullRepresentation("").bind(MedicalEntity::getCity,
-			MedicalEntity::setCity);
+		this.binder.forField(this.txtCity).withNullRepresentation("").bind(MedicalEntity::getCity, MedicalEntity::setCity);
 		this.binder.forField(this.txtCountry).withNullRepresentation("").bind(MedicalEntity::getCountry,
 			MedicalEntity::setCountry);
 		this.binder.forField(this.cmbProfession).bind(MedicalEntity::getProfession, MedicalEntity::setProfession);
 		this.binder.forField(this.txtZipCode).withNullRepresentation("").bind(MedicalEntity::getZipCode,
 			MedicalEntity::setZipCode);
-
+		this.binder.forField(this.txtAdress1).withNullRepresentation("").bind(MedicalEntity::getAddress1,
+			MedicalEntity::setAddress1);
+		this.binder.forField(this.txtAdress2).withNullRepresentation("").bind(MedicalEntity::getAddress2, (v, x) -> {});
+		
 		this.btnSave.setWidthFull();
 		this.btnSave.setHeight(null);
 		this.btnCancel.setWidthFull();
@@ -240,6 +237,11 @@ public class MedicalPopup extends Dialog
 		this.txtName.setWidthFull();
 		this.txtName.setHeight(null);
 		this.formItem.add(this.lblName, this.txtName);
+		this.lblProfession.setSizeUndefined();
+		this.lblProfession.getElement().setAttribute("slot", "label");
+		this.cmbProfession.setWidthFull();
+		this.cmbProfession.setHeight(null);
+		this.formItem7.add(this.lblProfession, this.cmbProfession);
 		this.lblAdress1.setSizeUndefined();
 		this.lblAdress1.getElement().setAttribute("slot", "label");
 		this.txtAdress1.setWidthFull();
@@ -265,13 +267,8 @@ public class MedicalPopup extends Dialog
 		this.txtCountry.setWidthFull();
 		this.txtCountry.setHeight(null);
 		this.formItem6.add(this.lblCountry, this.txtCountry);
-		this.lblProfession.setSizeUndefined();
-		this.lblProfession.getElement().setAttribute("slot", "label");
-		this.cmbProfession.setWidthFull();
-		this.cmbProfession.setHeight(null);
-		this.formItem7.add(this.lblProfession, this.cmbProfession);
-		this.form.add(this.formItem, this.formItem2, this.formItem3, this.formItem4, this.formItem5, this.formItem6,
-			this.formItem7);
+		this.form.add(this.formItem, this.formItem7, this.formItem2, this.formItem3, this.formItem4, this.formItem5,
+			this.formItem6);
 		this.horizontalLayoutBtnBar.setWidthFull();
 		this.horizontalLayoutBtnBar.setHeight(null);
 		this.form.setSizeUndefined();
@@ -280,7 +277,7 @@ public class MedicalPopup extends Dialog
 		this.add(this.verticalLayout);
 		this.setWidth("90%");
 		this.setHeight("80%");
-
+		
 		this.btnSave.addClickListener(this::btnSave_onClick);
 		this.btnCancel.addClickListener(this::btnCancel_onClick);
 	} // </generated-code>

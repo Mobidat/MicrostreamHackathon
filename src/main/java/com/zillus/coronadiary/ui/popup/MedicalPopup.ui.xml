@@ -39,7 +39,7 @@
             <x:constraints width="0px" height="0px" flex-grow="0.0" />
             <FormItem x:name="formItem">
                 <x:constraints width="0px" height="0px" />
-                <Label x:name="lblName" text="name">
+                <Label x:name="lblName" text="Medical Name">
                     <x:constraints width="0px" label="true" height="0px" />
                 </Label>
                 <TextField required="true" x:name="txtName" requiredIndicatorVisible="true" clearButtonVisible="true">
@@ -49,9 +49,21 @@
                     </x:typeArguments>
                 </TextField>
             </FormItem>
+            <FormItem x:name="formItem7">
+                <x:constraints width="0px" height="0px" />
+                <Label x:name="lblProfession" text="Salutation">
+                    <x:constraints width="0px" label="true" height="0px" />
+                </Label>
+                <ComboBox x:name="cmbProfession" clearButtonVisible="true">
+                    <x:typeArguments>
+                        <typeArgument type="Profession" />
+                    </x:typeArguments>
+                    <x:constraints width="100%" height="0px" />
+                </ComboBox>
+            </FormItem>
             <FormItem x:name="formItem2">
                 <x:constraints width="0px" height="0px" />
-                <Label x:name="lblAdress1" text="Adress">
+                <Label x:name="lblAdress1" text="Address">
                     <x:constraints width="0px" label="true" height="0px" />
                 </Label>
                 <TextField x:name="txtAdress1" clearButtonVisible="true">
@@ -63,7 +75,7 @@
             </FormItem>
             <FormItem x:name="formItem3">
                 <x:constraints width="0px" height="0px" />
-                <Label x:name="lblAdress2" text="Adress 2">
+                <Label x:name="lblAdress2" text="Address 2">
                     <x:constraints width="0px" label="true" height="0px" />
                 </Label>
                 <TextField x:name="txtAdress2" clearButtonVisible="true">
@@ -109,30 +121,12 @@
                     </x:typeArguments>
                 </TextField>
             </FormItem>
-            <FormItem x:name="formItem7">
-                <x:constraints width="0px" height="0px" />
-                <Label x:name="lblProfession" text="profession">
-                    <x:constraints width="0px" label="true" height="0px" />
-                </Label>
-                <ComboBox x:name="cmbProfession" clearButtonVisible="true">
-                    <x:typeArguments>
-                        <typeArgument type="Profession" />
-                    </x:typeArguments>
-                    <x:constraints width="100%" height="0px" />
-                </ComboBox>
-            </FormItem>
             <Binder x:name="binder">
                 <x:typeArguments>
                     <typeArgument type="MedicalEntity" />
                 </x:typeArguments>
                 <x:bindings>
                     <binding field="txtName" property="name" required="true" nullRepresentation="" readOnly="false">
-                        <validator type="Bean" />
-                    </binding>
-                    <binding field="txtAdress1" property="adress1" required="false" nullRepresentation="" readOnly="false">
-                        <validator type="Bean" />
-                    </binding>
-                    <binding field="txtAdress2" property="adress2" required="false" nullRepresentation="" readOnly="false">
                         <validator type="Bean" />
                     </binding>
                     <binding field="txtCity" property="city" required="false" nullRepresentation="" readOnly="false">
@@ -145,6 +139,12 @@
                         <validator type="Bean" />
                     </binding>
                     <binding field="txtZipCode" property="zipCode" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="txtAdress1" property="address1" required="false" nullRepresentation="" readOnly="false">
+                        <validator type="Bean" />
+                    </binding>
+                    <binding field="txtAdress2" property="address2" required="false" nullRepresentation="" readOnly="false">
                         <validator type="Bean" />
                     </binding>
                 </x:bindings>

@@ -4,8 +4,8 @@
 <?template NONE?>
 <?import com.vaadin.flow.component.button.Button?>
 <?import com.vaadin.flow.component.html.H1?>
-<?import com.vaadin.flow.component.html.H2?>
 <?import com.vaadin.flow.component.html.H4?>
+<?import com.vaadin.flow.component.html.Label?>
 <?import com.vaadin.flow.component.orderedlayout.HorizontalLayout?>
 <?import com.vaadin.flow.component.orderedlayout.VerticalLayout?>
 <?import com.zillus.coronadiary.ui.MainLayout?>
@@ -23,33 +23,48 @@
     </H4>
     <HorizontalLayout x:name="horizontalLayout2">
         <x:constraints width="100%" height="-1px" flex-grow="0.0" />
-        <H2 x:name="h2Patient" text="none">
+        <Label x:name="lblPatients" text="# Patients">
+            <x:constraints width="250px" alignment="CENTER" height="0px" flex-grow="0.0" />
+        </Label>
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_SUCCESS" x:name="btnPatients" text="200 Patients">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#USER_HEART" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
-        </H2>
-        <Button x:name="btnPatients" text="200 Patient Data">
-            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#PLUS" />
+            <x:event>click.onComponentEvent</x:event>
+        </Button>
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_ERROR" x:name="btnPatientsDelete" text="Patients">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#TRASH" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
         </Button>
     </HorizontalLayout>
     <HorizontalLayout x:name="horizontalLayout3">
         <x:constraints width="100%" height="-1px" flex-grow="0.0" />
-        <H2 x:name="h2Medicals" text="none">
+        <Label x:name="lblMedicals" text="# Medicals">
+            <x:constraints width="250px" alignment="CENTER" height="0px" flex-grow="0.0" />
+        </Label>
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_SUCCESS" x:name="btnMedicals" text="200 Medicals">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#HOSPITAL" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
-        </H2>
-        <Button x:name="btnMedicals" text="200 Medical Data">
-            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#PLUS" />
+            <x:event>click.onComponentEvent</x:event>
+        </Button>
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_ERROR" x:name="btnMedicalsDelete" text="Medicals">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#TRASH" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
         </Button>
     </HorizontalLayout>
     <HorizontalLayout x:name="horizontalLayout">
         <x:constraints width="100%" height="-1px" flex-grow="0.0" />
-        <H2 x:name="h2Entries" text="none">
+        <Label x:name="lblEntries" text="# Entries">
+            <x:constraints width="250px" alignment="CENTER" height="0px" flex-grow="0.0" />
+        </Label>
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_SUCCESS" x:name="btnEntries" text="6000 Entries">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#BOOK" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
-        </H2>
-        <Button x:name="btnEntries" text="6000 Diary Data">
-            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#PLUS" />
+            <x:event>click.onComponentEvent</x:event>
+        </Button>
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_ERROR" x:name="btnEntriesDelete" text="Entries">
+            <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#TRASH" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
         </Button>

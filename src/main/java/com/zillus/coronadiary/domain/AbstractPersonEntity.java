@@ -33,11 +33,11 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	/** The name. */
 	private String name;
 	
-	/** The adress 1. */
-	private String adress1;
+	/** The address 1. */
+	private String address1;
 	
-	/** The adress 2. */
-	private String adress2;
+	/** The address 2. */
+	private String address2;
 	
 	/** The city. */
 	private String city;
@@ -55,10 +55,10 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	 *            the view id
 	 * @param name
 	 *            the name
-	 * @param adress1
-	 *            the adress 1
-	 * @param adress2
-	 *            the adress 2
+	 * @param address1
+	 *            the address 1
+	 * @param address2
+	 *            the address 2
 	 * @param city
 	 *            the city
 	 * @param zipCode
@@ -75,13 +75,13 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 		final String country)
 	{
 		super();
-		this.viewId  = UUID.randomUUID().toString();
-		this.name    = name;
-		this.adress1 = adress1;
-		this.adress2 = adress2;
-		this.city    = city;
-		this.zipCode = zipCode;
-		this.country = country;
+		this.viewId   = UUID.randomUUID().toString();
+		this.name     = name;
+		this.address1 = adress1;
+		this.address2 = adress2;
+		this.city     = city;
+		this.zipCode  = zipCode;
+		this.country  = country;
 	}
 	
 	public AbstractPersonEntity()
@@ -116,20 +116,20 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	 *
 	 * @return the adress 1
 	 */
-	public String getAdress1()
+	public String getAddress1()
 	{
-		return this.adress1;
+		return this.address1;
 	}
 
 	/**
 	 * Sets the adress 1.
 	 *
-	 * @param adress1
+	 * @param address1
 	 *            the new adress 1
 	 */
-	public void setAdress1(final String adress1)
+	public void setAddress1(final String adress1)
 	{
-		this.adress1 = adress1;
+		this.address1 = adress1;
 	}
 
 	/**
@@ -137,20 +137,20 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	 *
 	 * @return the adress 2
 	 */
-	public String getAdress2()
+	public String getAddress2()
 	{
-		return this.adress2;
+		return this.address2;
 	}
 
 	/**
 	 * Sets the adress 2.
 	 *
-	 * @param adress2
+	 * @param address2
 	 *            the new adress 2
 	 */
 	public void setAdress2(final String adress2)
 	{
-		this.adress2 = adress2;
+		this.address2 = adress2;
 	}
 
 	/**
@@ -219,8 +219,8 @@ public abstract class AbstractPersonEntity implements Comparable<AbstractPersonE
 	@Override
 	public String toString()
 	{
-		return "AbstractPersonEntity [viewId=" + this.viewId + ", name=" + this.name + ", adress1=" + this.adress1
-			+ ", adress2=" + this.adress2 + ", city=" + this.city + ", zipCode=" + this.zipCode + ", country="
+		return "AbstractPersonEntity [viewId=" + this.viewId + ", name=" + this.name + ", address1=" + this.address1
+			+ ", address2=" + this.address2 + ", city=" + this.city + ", zipCode=" + this.zipCode + ", country="
 			+ this.country + "]";
 	}
 
