@@ -62,6 +62,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 		final int countAllMedicals   = PersonDAO.countAllMedicals();
 		final int countAllTreatments = TreatmentDAO.countAllTreatments();
 
+		this.btnEntries.setText(countAllPatients * 30 + " Entries");
 		this.btnEntries.setEnabled(countAllMedicals > 0 && countAllPatients > 0);
 
 		this.btnEntriesDelete.setEnabled(countAllTreatments > 0);
@@ -272,7 +273,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 		this.btnMedicalsDelete.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_ERROR);
 		this.btnMedicalsDelete.setIcon(VaadinIcon.TRASH.create());
 		this.lblEntries.setText("# Entries");
-		this.btnEntries.setText("6000 Entries");
+		this.btnEntries.setText("Entries");
 		this.btnEntries.addThemeVariants(ButtonVariant.LUMO_TERTIARY, ButtonVariant.LUMO_SUCCESS);
 		this.btnEntries.setIcon(VaadinIcon.BOOK.create());
 		this.btnEntriesDelete.setText("Entries");

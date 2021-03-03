@@ -58,7 +58,7 @@
         <Label x:name="lblEntries" text="# Entries">
             <x:constraints width="250px" alignment="CENTER" height="0px" flex-grow="0.0" />
         </Label>
-        <Button x:themeVariants="LUMO_TERTIARY LUMO_SUCCESS" x:name="btnEntries" text="6000 Entries">
+        <Button x:themeVariants="LUMO_TERTIARY LUMO_SUCCESS" x:name="btnEntries" text="Entries">
             <x:icon src="com.vaadin.flow.component.icon.VaadinIcon#BOOK" />
             <x:constraints width="100%" alignment="CENTER" height="0px" flex-grow="0.0" />
             <x:event>click.onComponentEvent</x:event>
