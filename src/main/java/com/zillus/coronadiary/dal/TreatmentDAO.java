@@ -30,7 +30,7 @@ import com.zillus.coronadiary.microstream.DB;
 
 public class TreatmentDAO
 {
-
+	
 	/**
 	 * Adds the entity.
 	 *
@@ -45,7 +45,7 @@ public class TreatmentDAO
 			TreatmentDAO.storeTreatment();
 		}
 	}
-
+	
 	/**
 	 * Store entities.
 	 *
@@ -56,7 +56,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
 	}
-
+	
 	/**
 	 * Removes the entity.
 	 *
@@ -71,7 +71,7 @@ public class TreatmentDAO
 			TreatmentDAO.storeTreatment();
 		}
 	}
-
+	
 	/**
 	 * Checks if is saved.
 	 *
@@ -83,7 +83,7 @@ public class TreatmentDAO
 	{
 		return entity != null || !DB.root().getTreatmentEntities().contains(entity);
 	}
-
+	
 	/**
 	 * Find all.
 	 *
@@ -93,7 +93,7 @@ public class TreatmentDAO
 	{
 		return DB.root().getTreatmentEntities();
 	}
-
+	
 	/**
 	 * Count all treatments.
 	 *
@@ -103,7 +103,7 @@ public class TreatmentDAO
 	{
 		return TreatmentDAO.findAll().size();
 	}
-
+	
 	/**
 	 * Find all medical.
 	 *
@@ -114,7 +114,7 @@ public class TreatmentDAO
 		return TreatmentDAO.findAll().stream().filter(MedicationEntity.class::isInstance)
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Find all symptom.
 	 *
@@ -127,7 +127,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Find all testing.
 	 *
@@ -140,7 +140,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Find all vaccination.
 	 *
@@ -153,7 +153,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Store treatment.
 	 */
@@ -161,7 +161,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities());
 	}
-
+	
 	/**
 	 * Gets the sorted treatment.
 	 *
@@ -176,7 +176,7 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Gets the sorted treatments.
 	 *
@@ -188,9 +188,9 @@ public class TreatmentDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
-	 * Store entities.
+	 * Store symptoms.
 	 *
 	 * @param entities
 	 *            the entities
@@ -199,7 +199,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
 	}
-
+	
 	/**
 	 * Store medications.
 	 *
@@ -210,7 +210,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
 	}
-
+	
 	/**
 	 * Store testings.
 	 *
@@ -221,7 +221,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
 	}
-
+	
 	/**
 	 * Store vaccinations.
 	 *
@@ -232,7 +232,7 @@ public class TreatmentDAO
 	{
 		DB.storageManager().store(DB.root().getTreatmentEntities().addAll(entities));
 	}
-	
+
 	/**
 	 * Removes the all treatments.
 	 */
@@ -240,7 +240,7 @@ public class TreatmentDAO
 	{
 		final Set<AbstractTreatmentEntity> treatmentEntities = DB.root().getTreatmentEntities();
 		treatmentEntities.clear();
-
+		
 		DB.storageManager().store(treatmentEntities);
 	}
 }
