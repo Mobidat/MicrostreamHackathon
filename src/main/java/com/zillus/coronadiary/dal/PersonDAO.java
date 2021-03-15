@@ -31,7 +31,7 @@ import com.zillus.coronadiary.microstream.DB;
  */
 public class PersonDAO
 {
-
+	
 	/**
 	 * Find all.
 	 *
@@ -41,7 +41,7 @@ public class PersonDAO
 	{
 		return DB.root().getPersonEntities();
 	}
-
+	
 	/**
 	 * Adds the entity.
 	 *
@@ -56,7 +56,7 @@ public class PersonDAO
 			PersonDAO.storePerson();
 		}
 	}
-
+	
 	/**
 	 * Removes the entity.
 	 *
@@ -71,7 +71,7 @@ public class PersonDAO
 			PersonDAO.storePerson();
 		}
 	}
-	
+
 	/**
 	 * Checks if is saved.
 	 *
@@ -83,7 +83,7 @@ public class PersonDAO
 	{
 		return entity != null || !DB.root().getPersonEntities().contains(entity);
 	}
-
+	
 	/**
 	 * Find person.
 	 *
@@ -95,7 +95,7 @@ public class PersonDAO
 	{
 		return PersonDAO.findAll().stream().filter(p -> p.getViewId().equals(personId)).findFirst().get();
 	}
-
+	
 	/**
 	 * Find all medicals.
 	 *
@@ -109,7 +109,7 @@ public class PersonDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Count all medicals.
 	 *
@@ -119,7 +119,7 @@ public class PersonDAO
 	{
 		return PersonDAO.findAllMedicals().size();
 	}
-
+	
 	/**
 	 * Find all patients.
 	 *
@@ -133,7 +133,7 @@ public class PersonDAO
 			.sorted()
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Count all patients.
 	 *
@@ -143,13 +143,14 @@ public class PersonDAO
 	{
 		return PersonDAO.findAllPatients().size();
 	}
-
+	
 	/**
 	 * Store person.
 	 */
 	private static void storePerson()
 	{
 		DB.storageManager().store(DB.root().getPersonEntities());
+
 	}
 
 	/**
@@ -162,7 +163,7 @@ public class PersonDAO
 	{
 		DB.storageManager().store(DB.root().getPersonEntities().addAll(entities));
 	}
-
+	
 	/**
 	 * Removes the all medicals.
 	 */
@@ -171,10 +172,10 @@ public class PersonDAO
 		final List<MedicalEntity>       findAllMedicals = PersonDAO.findAllMedicals();
 		final Set<AbstractPersonEntity> personEntities  = DB.root().getPersonEntities();
 		personEntities.removeAll(findAllMedicals);
-
+		
 		DB.storageManager().store(personEntities);
 	}
-
+	
 	/**
 	 * Store entities.
 	 *
@@ -185,7 +186,7 @@ public class PersonDAO
 	{
 		DB.storageManager().store(DB.root().getPersonEntities().addAll(entities));
 	}
-
+	
 	/**
 	 * Removes the all patients.
 	 */
@@ -194,7 +195,7 @@ public class PersonDAO
 		final List<PatientEntity>       findAllPatients = PersonDAO.findAllPatients();
 		final Set<AbstractPersonEntity> personEntities  = DB.root().getPersonEntities();
 		personEntities.removeAll(findAllPatients);
-
+		
 		DB.storageManager().store(personEntities);
 	}
 

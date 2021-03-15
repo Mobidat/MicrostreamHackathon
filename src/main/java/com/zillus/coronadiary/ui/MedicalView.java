@@ -91,38 +91,33 @@ public class MedicalView extends VerticalLayout implements HasTitle
 		this.horizontalLayout = new HorizontalLayout();
 		this.addBtn           = new Button();
 		this.gridMedical      = new Grid<>(MedicalEntity.class, false);
-
+		
 		this.addBtn.setText("Medical");
 		this.addBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.addBtn.setIcon(VaadinIcon.HOSPITAL.create());
 		this.gridMedical.addThemeVariants(GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
-		this.gridMedical.addColumn(RenderedComponent.Renderer(GenColMedicalDetail::new)).setKey("renderer")
-			.setHeader("...")
+		this.gridMedical.addColumn(RenderedComponent.Renderer(GenColMedicalDetail::new)).setKey("renderer").setHeader("...")
 			.setFrozen(true).setSortable(false).setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
 		this.gridMedical.addColumn(MedicalEntity::getName).setKey("name").setHeader("Name").setFrozen(true)
 			.setSortable(true).setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
 		this.gridMedical.addColumn(new CaptionRenderer<>(MedicalEntity::getProfession)).setKey("profession")
 			.setHeader("Profession").setSortable(true);
-		this.gridMedical.addColumn(MedicalEntity::getAddress1).setKey("address1").setHeader("Adress1")
-			.setSortable(true);
-		this.gridMedical.addColumn(MedicalEntity::getAddress2).setKey("address2").setHeader("Adress2")
-			.setSortable(true);
+		this.gridMedical.addColumn(MedicalEntity::getAddress1).setKey("address1").setHeader("Adress1").setSortable(true);
+		this.gridMedical.addColumn(MedicalEntity::getAddress2).setKey("address2").setHeader("Adress2").setSortable(true);
 		this.gridMedical.addColumn(MedicalEntity::getCity).setKey("city").setHeader("City").setSortable(true);
 		this.gridMedical.addColumn(MedicalEntity::getZipCode).setKey("zipCode").setHeader("Zip Code").setSortable(true);
 		this.gridMedical.setSelectionMode(Grid.SelectionMode.SINGLE);
-
+		
 		this.addBtn.setWidthFull();
 		this.addBtn.setHeight(null);
 		this.horizontalLayout.add(this.addBtn);
 		this.horizontalLayout.setWidthFull();
 		this.horizontalLayout.setHeight(null);
-		this.gridMedical.setWidthFull();
-		this.gridMedical.setHeight(null);
+		this.gridMedical.setSizeFull();
 		this.add(this.horizontalLayout, this.gridMedical);
 		this.setFlexGrow(1.0, this.gridMedical);
-		this.setWidthFull();
-		this.setHeight(null);
-
+		this.setSizeFull();
+		
 		this.addBtn.addClickListener(this::addBtn_onClick);
 	} // </generated-code>
 

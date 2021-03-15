@@ -25,22 +25,38 @@ import one.microstream.storage.types.EmbeddedStorageManager;
  */
 public final class DB
 {
-
+	
 	/** The Constant root. */
 	private final static DataRoot root = new DataRoot();
-
+	
 	/** The Constant storageManager. */
 	private final static EmbeddedStorageManager storageManager;
+
 	static
 	{
 		storageManager = Configuration.Default()
-			.setBaseDirectoryInUserHome("microstream-data/CoronaDiary")
-			.setBackupDirectoryInUserHome("microstream-data/Backup")
+			.setBaseDirectoryInUserHome("microstream-data\\CoronaDiary")
+			.setBackupDirectoryInUserHome("microstream-data\\Backup")
 			.createEmbeddedStorageFoundation()
 			.createEmbeddedStorageManager(DB.root)
 			.start();
-	}
 
+		// final ADirectory ensureDirectoryPath =
+		// NioFileSystem.New().ensureDirectoryPath("microstream-data\\FullBackup");
+		//
+		// final StorageLiveFileProvider liveFileProvider = Storage.FileProvider(ensureDirectoryPath);
+		//
+		// final StorageBackupSetup backupSetup = Storage.BackupSetup("microstream-data\\FullBackup");
+		//
+		// final StorageConfiguration storageConfiguration = StorageConfiguration.Builder()
+		//
+		// .setStorageFileProvider(liveFileProvider)
+		// .setBackupSetup(backupSetup)
+		// .createConfiguration();
+		//
+		// storageManager = EmbeddedStorage.Foundation(storageConfiguration).start(DB.root);
+	}
+	
 	/**
 	 * Root.
 	 *
@@ -50,7 +66,7 @@ public final class DB
 	{
 		return DB.root;
 	}
-
+	
 	/**
 	 * Storage manager.
 	 *
@@ -60,7 +76,7 @@ public final class DB
 	{
 		return DB.storageManager;
 	}
-
+	
 	/**
 	 * Shut down.
 	 */
@@ -68,7 +84,7 @@ public final class DB
 	{
 		DB.storageManager.shutdown();
 	}
-
+	
 	/**
 	 * Instantiates a new micro stream.
 	 */

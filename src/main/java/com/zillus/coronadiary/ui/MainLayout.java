@@ -35,17 +35,17 @@ import com.zillus.coronadiary.HasTitle;
 public class MainLayout extends AppLayout
 {
 	private final H2 title = new H2("Corona Diary");
-
+	
 	public MainLayout()
 	{
 		this.addToNavbar(new DrawerToggle(), this.title);
-
+		
 		this.addDrawerEntry(VaadinIcon.HOME, "Home", HomeView.class);
 		this.addDrawerEntry(VaadinIcon.USER_HEART, "Patient", PatientView.class);
 		this.addDrawerEntry(VaadinIcon.HOSPITAL, "Medical", MedicalView.class);
 		this.addDrawerEntry(VaadinIcon.BOOK, "Diary", TreatmentView.class);
 	}
-
+	
 	private void addDrawerEntry(final VaadinIcon icon, final String label, final Class<? extends Component> linkTarget)
 	{
 		final HorizontalLayout layout = new HorizontalLayout(icon.create(), new RouterLink(label, linkTarget));
@@ -54,7 +54,7 @@ public class MainLayout extends AppLayout
 		layout.setPadding(false);
 		this.addToDrawer(layout);
 	}
-
+	
 	@Override
 	public void showRouterLayoutContent(final HasElement content)
 	{

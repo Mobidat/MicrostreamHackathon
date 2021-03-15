@@ -92,40 +92,36 @@ public class PatientView extends VerticalLayout implements HasTitle
 		this.horizontalLayout = new HorizontalLayout();
 		this.addBtn           = new Button();
 		this.gridPatient      = new Grid<>(PatientEntity.class, false);
-
+		
 		this.addBtn.setText("Patient");
 		this.addBtn.addThemeVariants(ButtonVariant.LUMO_SUCCESS);
 		this.addBtn.setIcon(VaadinIcon.USER_HEART.create());
 		this.gridPatient.addThemeVariants(GridVariant.LUMO_ROW_STRIPES, GridVariant.LUMO_COMPACT);
-		this.gridPatient.addColumn(RenderedComponent.Renderer(GenColPatientDetail::new)).setKey("renderer")
-			.setHeader("...")
+		this.gridPatient.addColumn(RenderedComponent.Renderer(GenColPatientDetail::new)).setKey("renderer").setHeader("...")
 			.setFrozen(true).setSortable(false).setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
 		this.gridPatient.addColumn(PatientEntity::getName).setKey("name").setHeader("Patient").setFrozen(true)
 			.setSortable(true).setAutoWidth(true).setFlexGrow(0).setTextAlign(ColumnTextAlign.CENTER);
-		this.gridPatient.addColumn(PatientEntity::getBirthday).setKey("birthday").setHeader("Birthdate")
-			.setSortable(true);
+		this.gridPatient.addColumn(PatientEntity::getBirthday).setKey("birthday").setHeader("Birthdate").setSortable(true);
 		this.gridPatient.addColumn(new CaptionRenderer<>(PatientEntity::getGender)).setKey("gender").setHeader("Gender")
 			.setSortable(true);
-		this.gridPatient.addColumn(PatientEntity::getAddress1).setKey("address1").setHeader("Address1")
-			.setSortable(true);
-		this.gridPatient.addColumn(PatientEntity::getAddress2).setKey("address2").setHeader("Address2")
-			.setSortable(true);
+		this.gridPatient.addColumn(PatientEntity::getAddress1).setKey("address1").setHeader("Address1").setSortable(true);
+		this.gridPatient.addColumn(PatientEntity::getAddress2).setKey("address2").setHeader("Address2").setSortable(true);
 		this.gridPatient.addColumn(PatientEntity::getCity).setKey("city").setHeader("City").setSortable(true);
 		this.gridPatient.addColumn(PatientEntity::getZipCode).setKey("zipCode").setHeader("Zip Code").setSortable(true);
 		this.gridPatient.addColumn(PatientEntity::getCountry).setKey("country").setHeader("Country").setSortable(true);
 		this.gridPatient.setSelectionMode(Grid.SelectionMode.SINGLE);
-
+		
 		this.addBtn.setWidthFull();
 		this.addBtn.setHeight(null);
 		this.horizontalLayout.add(this.addBtn);
 		this.horizontalLayout.setWidthFull();
 		this.horizontalLayout.setHeight(null);
-		this.gridPatient.setWidthFull();
-		this.gridPatient.setHeight(null);
+		this.gridPatient.setSizeFull();
 		this.add(this.horizontalLayout, this.gridPatient);
 		this.setFlexGrow(1.0, this.gridPatient);
-		this.setSizeUndefined();
-
+		this.setWidth(null);
+		this.setHeightFull();
+		
 		this.addBtn.addClickListener(this::addBtn_onClick);
 	} // </generated-code>
 

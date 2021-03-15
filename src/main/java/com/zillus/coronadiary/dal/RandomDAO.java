@@ -18,6 +18,7 @@ package com.zillus.coronadiary.dal;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -56,6 +57,12 @@ public class RandomDAO
 	/** The faker. */
 	private static final Faker FAKER = Faker.instance();
 
+	/** The start corona. */
+	static LocalDate startCorona = LocalDate.of(2020, 1, 1);
+	
+	/** The Constant DAYS_ATMOST. */
+	private static final int DAYS_ATMOST = (int)RandomDAO.startCorona.until(LocalDate.now(), ChronoUnit.DAYS);
+
 	/**
 	 * Creates the vaccinations.
 	 *
@@ -82,7 +89,8 @@ public class RandomDAO
 			final String        medicalId     = randomMedical.getViewId();
 			
 			vaccinations.add(new VaccinationEntity(patienId, medicalId,
-				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
+				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+					ZoneId.systemDefault()),
 				medical.medicineName(), Boolean.valueOf(bool.bool()),
 				randomEnum.random()));
 		}
@@ -115,7 +123,8 @@ public class RandomDAO
 			final String        medicalId     = randomMedical.getViewId();
 			
 			testings.add(new TestingEntity(patienId, medicalId,
-				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
+				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+					ZoneId.systemDefault()),
 				medical.hospitalName(), Boolean.valueOf(bool.bool()),
 				randomEnum.random()));
 		}
@@ -142,7 +151,8 @@ public class RandomDAO
 		for(int i = 0; i < numSymptom; i++)
 		{
 			symptoms.add(new SymptomEntity(patienId, null,
-				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
+				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+					ZoneId.systemDefault()),
 				medical.symptoms(), Integer.valueOf(number.numberBetween(1, 14)),
 				Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
 		}
@@ -174,7 +184,8 @@ public class RandomDAO
 			final String        medicalId     = randomMedical.getViewId();
 
 			medications.add(new MedicationEntity(patienId, medicalId,
-				LocalDate.ofInstant(date.past(720, TimeUnit.DAYS).toInstant(), ZoneId.systemDefault()),
+				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+					ZoneId.systemDefault()),
 				medical.medicineName(), Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
 		}
 		return medications;
