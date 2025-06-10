@@ -82,7 +82,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 		this.lblMedicals.setText(countAllMedicals + " Medicals");
 		this.lblEntries.setText(countAllTreatments + " D-Entries");
 		
-		// create bottons init
+                // create buttons init
 		this.btnMedicals.setText(HomeView.NUM_MEDICALS + " new Medicals");
 		this.btnPatients.setText(HomeView.NUM_PATIENTS + " new Patients");
 		this.btnEntries.setText(countAllPatients
@@ -90,7 +90,7 @@ public class HomeView extends VerticalLayout implements HasTitle
 			+ " Entries");
 		this.btnEntries.setEnabled(countAllMedicals > HomeView.NUM_NULL && countAllPatients > HomeView.NUM_NULL);
 		
-		// delete bottons init
+                // delete buttons init
 		this.btnEntriesDelete.setEnabled(countAllTreatments > HomeView.NUM_NULL);
 		this.btnPatientsDelete.setEnabled(countAllPatients > HomeView.NUM_NULL);
 		this.btnMedicalsDelete.setEnabled(countAllMedicals > HomeView.NUM_NULL);
