@@ -79,10 +79,10 @@ public class TreatmentDAO
 	 *            the entity
 	 * @return true, if is saved
 	 */
-	public static boolean isSaved(final AbstractTreatmentEntity entity)
-	{
-		return entity != null || !DB.root().getTreatmentEntities().contains(entity);
-	}
+       public static boolean isSaved(final AbstractTreatmentEntity entity)
+       {
+               return entity != null && DB.root().getTreatmentEntities().contains(entity);
+       }
 
 	/**
 	 * Find all.

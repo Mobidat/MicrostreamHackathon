@@ -79,10 +79,10 @@ public class PersonDAO
 	 *            the entity
 	 * @return true, if is saved
 	 */
-	public static boolean isSaved(final AbstractPersonEntity entity)
-	{
-		return entity != null || !DB.root().getPersonEntities().contains(entity);
-	}
+       public static boolean isSaved(final AbstractPersonEntity entity)
+       {
+               return entity != null && DB.root().getPersonEntities().contains(entity);
+       }
 	
 	/**
 	 * Find person.
