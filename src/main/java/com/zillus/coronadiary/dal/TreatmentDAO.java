@@ -81,7 +81,8 @@ public class TreatmentDAO
 	 */
        public static boolean isSaved(final AbstractTreatmentEntity entity)
        {
-               return entity != null && DB.root().getTreatmentEntities().contains(entity);
+               return entity != null
+                       && DB.root().getTreatmentEntities().contains(entity);
        }
 
 	/**

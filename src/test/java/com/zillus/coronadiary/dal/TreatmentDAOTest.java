@@ -30,6 +30,11 @@ class TreatmentDAOTest {
     }
 
     @Test
+    void isSavedNullReturnsFalse() {
+        Assertions.assertFalse(TreatmentDAO.isSaved(null));
+    }
+
+    @Test
     void addAndRemoveUpdatesCollection() {
         SymptomEntity symptom = new SymptomEntity();
         TreatmentDAO.addEntity(symptom);
