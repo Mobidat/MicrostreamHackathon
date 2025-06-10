@@ -81,7 +81,8 @@ public class PersonDAO
 	 */
        public static boolean isSaved(final AbstractPersonEntity entity)
        {
-               return entity != null && DB.root().getPersonEntities().contains(entity);
+               return entity != null
+                       && DB.root().getPersonEntities().contains(entity);
        }
 	
 	/**

@@ -30,6 +30,11 @@ class PersonDAOTest {
     }
 
     @Test
+    void isSavedNullReturnsFalse() {
+        Assertions.assertFalse(PersonDAO.isSaved(null));
+    }
+
+    @Test
     void addAndRemoveUpdatesCollection() {
         PatientEntity patient = new PatientEntity();
         PersonDAO.addEntity(patient);
