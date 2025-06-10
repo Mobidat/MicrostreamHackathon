@@ -68,14 +68,15 @@ public class RandomDAO
 	 *
 	 * @param numVaccination
 	 *            the num vaccination
-	 * @param patienId
-	 * @param medicals
-	 * @return the list
-	 */
-	public static List<VaccinationEntity>
-		createVaccinations(final int numVaccination, final String patienId, final List<MedicalEntity> medicals)
-	{
-		final List<VaccinationEntity> vaccinations = new ArrayList<>();
+         * @param patientId
+         *            the patient id
+         * @param medicals
+         * @return the list
+         */
+        public static List<VaccinationEntity>
+                createVaccinations(final int numVaccination, final String patientId, final List<MedicalEntity> medicals)
+        {
+                final List<VaccinationEntity> vaccinations = new ArrayList<>();
 
 		final DateAndTime date    = RandomDAO.FAKER.date();
 		final Medical     medical = RandomDAO.FAKER.medical();
@@ -86,12 +87,12 @@ public class RandomDAO
 		for(int i = 0; i < numVaccination; i++)
 		{
 			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
-			final String        medicalId     = randomMedical.getViewId();
-			
-			vaccinations.add(new VaccinationEntity(patienId, medicalId,
-				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
-					ZoneId.systemDefault()),
-				medical.medicineName(), Boolean.valueOf(bool.bool()),
+                        final String        medicalId     = randomMedical.getViewId();
+
+                        vaccinations.add(new VaccinationEntity(patientId, medicalId,
+                                LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+                                        ZoneId.systemDefault()),
+                                medical.medicineName(), Boolean.valueOf(bool.bool()),
 				randomEnum.random()));
 		}
 		return vaccinations;
@@ -102,13 +103,14 @@ public class RandomDAO
 	 *
 	 * @param numTesting
 	 *            the num testing
-	 * @param patienId
-	 * @param medicals
-	 * @return the list
-	 */
-	public static List<TestingEntity>
-		createTestings(final int numTesting, final String patienId, final List<MedicalEntity> medicals)
-	{
+         * @param patientId
+         *            the patient id
+         * @param medicals
+         * @return the list
+         */
+        public static List<TestingEntity>
+                createTestings(final int numTesting, final String patientId, final List<MedicalEntity> medicals)
+        {
 		final List<TestingEntity> testings = new ArrayList<>();
 
 		final DateAndTime date    = RandomDAO.FAKER.date();
@@ -120,12 +122,12 @@ public class RandomDAO
 		for(int i = 0; i < numTesting; i++)
 		{
 			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
-			final String        medicalId     = randomMedical.getViewId();
-			
-			testings.add(new TestingEntity(patienId, medicalId,
-				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
-					ZoneId.systemDefault()),
-				medical.hospitalName(), Boolean.valueOf(bool.bool()),
+                        final String        medicalId     = randomMedical.getViewId();
+
+                        testings.add(new TestingEntity(patientId, medicalId,
+                                LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+                                        ZoneId.systemDefault()),
+                                medical.hospitalName(), Boolean.valueOf(bool.bool()),
 				randomEnum.random()));
 		}
 		return testings;
@@ -136,12 +138,13 @@ public class RandomDAO
 	 *
 	 * @param numSymptom
 	 *            the num symptom
-	 * @param patienId
-	 * @return the list
-	 */
-	public static List<SymptomEntity> createSymptoms(final int numSymptom, final String patienId)
-	{
-		final List<SymptomEntity> symptoms = new ArrayList<>();
+         * @param patientId
+         *            the patient id
+         * @return the list
+         */
+        public static List<SymptomEntity> createSymptoms(final int numSymptom, final String patientId)
+        {
+                final List<SymptomEntity> symptoms = new ArrayList<>();
 
 		final DateAndTime          date       = RandomDAO.FAKER.date();
 		final Medical              medical    = RandomDAO.FAKER.medical();
@@ -150,10 +153,10 @@ public class RandomDAO
 
 		for(int i = 0; i < numSymptom; i++)
 		{
-			symptoms.add(new SymptomEntity(patienId, null,
-				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
-					ZoneId.systemDefault()),
-				medical.symptoms(), Integer.valueOf(number.numberBetween(1, 14)),
+                        symptoms.add(new SymptomEntity(patientId, null,
+                                LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+                                        ZoneId.systemDefault()),
+                                medical.symptoms(), Integer.valueOf(number.numberBetween(1, 14)),
 				Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
 		}
 		return symptoms;
@@ -164,13 +167,13 @@ public class RandomDAO
 	 *
 	 * @param numMedication
 	 *            the num medication
-	 * @param patienId
-	 * @param medicals
-	 * @return the list
-	 */
-	public static List<MedicationEntity>
-		createMedications(final int numMedication, final String patienId, final List<MedicalEntity> medicals)
-	{
+         * @param patientId
+         * @param medicals
+         * @return the list
+         */
+        public static List<MedicationEntity>
+                createMedications(final int numMedication, final String patientId, final List<MedicalEntity> medicals)
+        {
 		final List<MedicationEntity> medications = new ArrayList<>();
 
 		final DateAndTime            date       = RandomDAO.FAKER.date();
@@ -181,12 +184,12 @@ public class RandomDAO
 		for(int i = 0; i < numMedication; i++)
 		{
 			final MedicalEntity randomMedical = RandomDAO.randomMedical(medicals);
-			final String        medicalId     = randomMedical.getViewId();
+                        final String        medicalId     = randomMedical.getViewId();
 
-			medications.add(new MedicationEntity(patienId, medicalId,
-				LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
-					ZoneId.systemDefault()),
-				medical.medicineName(), Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
+                        medications.add(new MedicationEntity(patientId, medicalId,
+                                LocalDate.ofInstant(date.past(RandomDAO.DAYS_ATMOST, TimeUnit.DAYS).toInstant(),
+                                        ZoneId.systemDefault()),
+                                medical.medicineName(), Integer.valueOf(number.numberBetween(1, 10)), randomEnum.random()));
 		}
 		return medications;
 	}
